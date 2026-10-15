@@ -78,8 +78,8 @@ site. Se precisar, o próprio Supabase Studio (`:54323`) serve de prova de que o
 **Tela:** ainda no app como `cliente@easypet.com`.
 
 **Ações:**
-1. Volte e **favorite uma 5ª loja** → aparece o **modal de limite** (“Seja Premium para favoritos
-   ilimitados”).
+1. **Favorite a 5ª loja** (a versão free permite 5 — a 5ª entra) e depois tente **favoritar uma 6ª**
+   → aparece o **modal de limite** (“Seja Premium para favoritos ilimitados”).
 2. Abra uma loja com **cupom** → o cupom aparece **bloqueado** (você vê o desconto, não o código).
 3. Toque em **“Assinar Premium”** e conclua o **checkout simulado** (R$ 9,90/mês, PIX/cartão —
    aprova na hora).
@@ -87,10 +87,10 @@ site. Se precisar, o próprio Supabase Studio (`:54323`) serve de prova de que o
 5. Abra **Cupons**: agora os **códigos aparecem**.
 6. Abra **Meus Pets → carteirinha**: mostre pet, vacinas e **próximas doses**.
 
-> **Fala:** “Na versão gratuita são 5 favoritos — bati no limite e apareceu o convite. Os cupons
-> apareciam bloqueados. Assinei o Premium por R$ 9,90 no mês, pagamento simulado: os anúncios de
-> lojas patrocinadas somem, os cupons liberam e eu ganho a **carteirinha digital do pet**, com
-> vacinas e próximas doses. Pronto — o cliente pagante.”
+> **Fala:** “Na versão gratuita dá pra salvar 5 lojas — a 5ª entrou, mas ao tentar a 6ª apareceu o
+> convite para o Premium. Os cupons apareciam bloqueados. Assinei o Premium por R$ 9,90 no mês,
+> pagamento simulado: os anúncios de lojas patrocinadas somem, os cupons liberam e eu ganho a
+> **carteirinha digital do pet**, com vacinas e próximas doses. Pronto — o cliente pagante.”
 
 ---
 

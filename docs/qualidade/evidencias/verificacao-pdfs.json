@@ -1,0 +1,130 @@
+{
+  "emissao": "15/10/2026",
+  "metodo": "Poppler: texto, numeração, aviso e renderização de todas as páginas; inspeção visual separada",
+  "documentos": [
+    {
+      "arquivo": "LM-001_lista-mestra.pdf",
+      "paginas": 2,
+      "verificacoes": [
+        {
+          "pagina": 1,
+          "numeracao_ok": true,
+          "aviso_ok": true,
+          "caracteres": 4439
+        },
+        {
+          "pagina": 2,
+          "numeracao_ok": true,
+          "aviso_ok": true,
+          "caracteres": 4369
+        }
+      ]
+    },
+    {
+      "arquivo": "MRO-001_riscos-oportunidades.pdf",
+      "paginas": 3,
+      "verificacoes": [
+        {
+          "pagina": 1,
+          "numeracao_ok": true,
+          "aviso_ok": true,
+          "caracteres": 4148
+        },
+        {
+          "pagina": 2,
+          "numeracao_ok": true,
+          "aviso_ok": true,
+          "caracteres": 3447
+        },
+        {
+          "pagina": 3,
+          "numeracao_ok": true,
+          "aviso_ok": true,
+          "caracteres": 4411
+        }
+      ]
+    },
+    {
+      "arquivo": "MSGQ-001_manual-sgq.pdf",
+      "paginas": 4,
+      "verificacoes": [
+        {
+          "pagina": 1,
+          "numeracao_ok": true,
+          "aviso_ok": true,
+          "caracteres": 4906
+        },
+        {
+          "pagina": 2,
+          "numeracao_ok": true,
+          "aviso_ok": true,
+          "caracteres": 3567
+        },
+        {
+          "pagina": 3,
+          "numeracao_ok": true,
+          "aviso_ok": true,
+          "caracteres": 4102
+        },
+        {
+          "pagina": 4,
+          "numeracao_ok": true,
+          "aviso_ok": true,
+          "caracteres": 4848
+        }
+      ]
+    },
+    {
+      "arquivo": "PPD-001_projeto-desenvolvimento.pdf",
+      "paginas": 3,
+      "verificacoes": [
+        {
+          "pagina": 1,
+          "numeracao_ok": true,
+          "aviso_ok": true,
+          "caracteres": 4603
+        },
+        {
+          "pagina": 2,
+          "numeracao_ok": true,
+          "aviso_ok": true,
+          "caracteres": 4489
+        },
+        {
+          "pagina": 3,
+          "numeracao_ok": true,
+          "aviso_ok": true,
+          "caracteres": 5618
+        }
+      ]
+    },
+    {
+      "arquivo": "PRO-001_controle-documental.pdf",
+      "paginas": 3,
+      "verificacoes": [
+        {
+          "pagina": 1,
+          "numeracao_ok": true,
+          "aviso_ok": true,
+          "caracteres": 2587
+        },
+        {
+          "pagina": 2,
+          "numeracao_ok": true,
+          "aviso_ok": true,
+          "caracteres": 4183
+        },
+        {
+          "pagina": 3,
+          "numeracao_ok": true,
+          "aviso_ok": true,
+          "caracteres": 3581
+        }
+      ]
+    }
+  ],
+  "inspecao_visual": {
+    "resultado": "Aprovado nesta entrega: 15 páginas renderizadas; contato de todas as páginas inspecionado e matriz em tamanho individual conferida. Sem tabelas cortadas, páginas em branco ou linhas isoladas em páginas adicionais.",
+    "observacao": "Inspeção documental dos PDFs; não constitui nova execução do QA do produto."
+  }
+}

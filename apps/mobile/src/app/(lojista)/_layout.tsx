@@ -1,12 +1,7 @@
-import { Tabs, Redirect } from "expo-router";
+import { Tabs } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useSession } from "../../lib/session";
-import { Busy, colors } from "../../features/ui";
+import { colors } from "../../features/ui";
 export default function Layout() {
-  const { profile, loading } = useSession();
-  if (loading) return <Busy />;
-  if (!profile) return <Redirect href="/" />;
-  if (profile.role !== "lojista") return <Redirect href="/(cliente)" />;
   return (
     <Tabs
       screenOptions={{

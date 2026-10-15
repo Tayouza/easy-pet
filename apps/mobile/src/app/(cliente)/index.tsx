@@ -15,6 +15,18 @@ import { supabase } from "../../lib/supabase";
 import { reportError, useSession } from "../../lib/session";
 import { Button, Busy, Empty, Field, s, Txt } from "../../features/ui";
 import { Store, StoreCard } from "../../features/stores";
+// Same 40 km fallback as the web explorer, measured from Praça da Matriz.
+function distanceFromMatrizKm(latitude: number, longitude: number) {
+  const radians = Math.PI / 180;
+  const deltaLat = (latitude - DEFAULT_LOCATION.lat) * radians;
+  const deltaLng = (longitude - DEFAULT_LOCATION.lng) * radians;
+  const haversine =
+    Math.sin(deltaLat / 2) ** 2 +
+    Math.cos(DEFAULT_LOCATION.lat * radians) *
+      Math.cos(latitude * radians) *
+      Math.sin(deltaLng / 2) ** 2;
+  return 2 * 6371 * Math.asin(Math.sqrt(Math.min(1, haversine)));
+}
 export default function Explore() {
   const { profile } = useSession();
   const premium = profile?.plano === "premium";
@@ -22,6 +34,7 @@ export default function Explore() {
     { latitude: DEFAULT_LOCATION.lat, longitude: DEFAULT_LOCATION.lng },
   );
   const [located, setLocated] = useState(false);
+  const [outsidePoa, setOutsidePoa] = useState(false);
   const [stores, setStores] = useState<Store[]>([]);
   const [busy, setBusy] = useState(true);
   const [loaded, setLoaded] = useState(false);
@@ -46,8 +59,15 @@ export default function Explore() {
       const p = await Location.getCurrentPositionAsync({
         accuracy: Location.Accuracy.Balanced,
       });
-      setCoords(p.coords);
-      setLocated(true);
+      const far =
+        distanceFromMatrizKm(p.coords.latitude, p.coords.longitude) > 40;
+      setOutsidePoa(far);
+      setCoords(
+        far
+          ? { latitude: DEFAULT_LOCATION.lat, longitude: DEFAULT_LOCATION.lng }
+          : p.coords,
+      );
+      setLocated(!far);
     } catch {
       Alert.alert(
         "Localização indisponível",
@@ -96,7 +116,13 @@ export default function Explore() {
     <View style={{ flex: 1 }}>
       <View style={{ padding: 14, gap: 8 }}>
         <Field
-          label={located ? "Perto de você" : "Praça da Matriz · Porto Alegre"}
+          label={
+            outsidePoa
+              ? "Você está fora de POA — mostrando a partir da Praça da Matriz"
+              : located
+                ? "Perto de você"
+                : "Praça da Matriz · Porto Alegre"
+          }
           placeholder="O que seu pet precisa hoje?"
           value={search}
           onChangeText={setSearch}

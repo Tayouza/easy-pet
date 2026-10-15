@@ -18,7 +18,7 @@ Contas demo, todas com senha `easypet123`:
 - `premium@easypet.com`: Premium, pets Thor e Mia.
 - `lojista@easypet.com`: Patas & Cia, plano Profissional.
 
-O admin utiliza o site; ao entrar no mobile vê a experiência de exploração.
+O admin utiliza o site; ao entrar no mobile recebe a orientação para usar o site.
 
 ## Fluxos
 
@@ -49,3 +49,11 @@ A fonte dos tipos e helpers é `packages/shared/src`, sincronizada pelo script d
 No Android, `src/features/map/EasyMap.android.tsx` usa WebView (incluída no Expo Go), Leaflet 1.9.4 e tiles HTTPS OpenStreetMap. No iOS, `EasyMap.tsx` mantém Apple Maps via react-native-maps. Os três mapas usam a mesma API: exploração, mini mapa da loja e pin arrastável do cadastro. O Android precisa de internet para carregar Leaflet e tiles; falha de carregamento oferece nova tentativa.
 
 O HTML permanece estável: mudanças em lojas/filtros/localização são enviadas por injectJavaScript após a mensagem ready. A câmera só anima quando centro/raio mudam, preservando pan/zoom durante atualizações de marcadores. A busca mantém o mapa montado durante refresh.
+
+## Autenticação e regressão de logout
+
+O Stack raiz usa `Stack.Protected`: visitantes acessam boas-vindas/autenticação, clientes e lojistas acessam apenas suas tabs, e telas compartilhadas exigem sessão. Pets exigem cliente Premium. Login, cadastro e logout apenas alteram a sessão; os guards controlam a navegação e removem o histórico das telas que deixaram de ser permitidas.
+
+O SessionProvider limpa o perfil imediatamente em SIGNED_OUT e descarta respostas de perfil que pertençam a uma sessão anterior. O callback de Auth é síncrono e não usa setTimeout.
+
+Execute `npm run test:auth` para os testes de integração com Expo Router/iOS e backend simulado: login/logout de cliente e lojista, cadastro com sessão imediata em cada role e resposta atrasada depois de sair. Os testes usam componentes reais de auth/perfil, Stack.Protected e layouts de tabs; telas de catálogo/mapa são substituídas por conteúdo mínimo. A validação final no iPhone continua sendo feita no Expo Go.

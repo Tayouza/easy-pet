@@ -92,7 +92,6 @@ export default function Profile() {
         onPress={() =>
           void supabase.auth.signOut().then(({ error }) => {
             if (error) reportError(error);
-            else router.replace("/");
           })
         }
       />

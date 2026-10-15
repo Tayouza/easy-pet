@@ -258,5 +258,5 @@ for (const email of [
   console.log(
     `OK ${email}: ${profile.role}/${profile.plano}, ${stores.length} lojas, ${coupons.length} cupons`,
   );
-  await db.auth.signOut();
+  await db.auth.signOut({ scope: "local" });
 }

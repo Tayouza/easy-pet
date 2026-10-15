@@ -38,10 +38,7 @@ export default function Premium() {
       .then(({ data }) => setStoreId(data?.id ?? null));
   }, [merchant, profile]);
   const pay = async () => {
-    if (!profile) {
-      router.replace("/auth");
-      return;
-    }
+    if (!profile) return;
     if (merchant && !storeId)
       return Alert.alert(
         "Cadastre sua loja primeiro",

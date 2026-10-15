@@ -1,18 +1,16 @@
 import { useState } from "react";
 import { Alert } from "react-native";
-import { router, useLocalSearchParams, Redirect } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import { supabase } from "../lib/supabase";
-import { reportError, useSession } from "../lib/session";
+import { reportError } from "../lib/session";
 import { Button, Card, Field, Page, Txt } from "../features/ui";
 export default function Auth() {
   const { role } = useLocalSearchParams<{ role: string }>();
-  const { profile } = useSession();
   const [signup, setSignup] = useState(false);
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
-  if (profile) return <Redirect href="/" />;
   const submit = async () => {
     if (!email.includes("@") || password.length < 6 || (signup && !nome.trim()))
       return Alert.alert(
@@ -39,7 +37,6 @@ export default function Auth() {
         "Confirme seu e-mail",
         "Enviamos um link para ativar sua conta.",
       );
-    else router.replace("/");
   };
   return (
     <Page>

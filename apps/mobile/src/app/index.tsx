@@ -1,18 +1,9 @@
-import { Redirect, router } from "expo-router";
+import { router } from "expo-router";
 import { Image } from "expo-image";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useSession } from "../lib/session";
-import { Busy, Button, colors, Txt } from "../features/ui";
+import { Button, colors, Txt } from "../features/ui";
 export default function Welcome() {
-  const { profile, loading } = useSession();
-  if (loading) return <Busy />;
-  if (profile)
-    return (
-      <Redirect
-        href={profile.role === "lojista" ? "/(lojista)" : "/(cliente)"}
-      />
-    );
   return (
     <SafeAreaView
       style={{

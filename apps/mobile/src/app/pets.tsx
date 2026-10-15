@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { Alert } from "react-native";
-import { Redirect, useFocusEffect } from "expo-router";
+import { useFocusEffect } from "expo-router";
 import { supabase, Row } from "../lib/supabase";
 import { reportError, useSession } from "../lib/session";
 import { Button, Busy, Card, Empty, Field, Page, Txt } from "../features/ui";
@@ -35,8 +35,6 @@ export default function Pets() {
       void load();
     }, [load]),
   );
-  if (profile && profile.plano !== "premium")
-    return <Redirect href="/premium" />;
   if (busy) return <Busy />;
   const save = async () => {
     if (!profile || !nome.trim()) return Alert.alert("Informe o nome do pet");

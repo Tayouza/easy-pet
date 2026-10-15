@@ -1,0 +1,7 @@
+{
+  "name": "easypet-brand-generator",
+  "private": true,
+  "type": "module",
+  "scripts": { "generate:stores": "node generate-store-logos.mjs" },
+  "dependencies": { "fontkit": "2.0.4", "sharp": "0.34.5" }
+}

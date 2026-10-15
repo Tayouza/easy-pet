@@ -1,0 +1,368 @@
+[
+  {
+    "nome": "Patas & Cia Pet Shop",
+    "categoria_id": "pet-shop",
+    "slug": "patas-cia-pet-shop",
+    "file": "patas-cia-pet-shop.png"
+  },
+  {
+    "nome": "Bicho Mimado",
+    "categoria_id": "pet-shop",
+    "slug": "bicho-mimado",
+    "file": "bicho-mimado.png"
+  },
+  {
+    "nome": "Pet Center Matriz",
+    "categoria_id": "pet-shop",
+    "slug": "pet-center-matriz",
+    "file": "pet-center-matriz.png"
+  },
+  {
+    "nome": "Focinho Feliz Pet Shop",
+    "categoria_id": "pet-shop",
+    "slug": "focinho-feliz-pet-shop",
+    "file": "focinho-feliz-pet-shop.png"
+  },
+  {
+    "nome": "Casa do Bigode",
+    "categoria_id": "pet-shop",
+    "slug": "casa-do-bigode",
+    "file": "casa-do-bigode.png"
+  },
+  {
+    "nome": "Rabo Abanando",
+    "categoria_id": "pet-shop",
+    "slug": "rabo-abanando",
+    "file": "rabo-abanando.png"
+  },
+  {
+    "nome": "Mundo Pet Menino Deus",
+    "categoria_id": "pet-shop",
+    "slug": "mundo-pet-menino-deus",
+    "file": "mundo-pet-menino-deus.png"
+  },
+  {
+    "nome": "Latido & Miado",
+    "categoria_id": "pet-shop",
+    "slug": "latido-miado",
+    "file": "latido-miado.png"
+  },
+  {
+    "nome": "Pet Point Tristeza",
+    "categoria_id": "pet-shop",
+    "slug": "pet-point-tristeza",
+    "file": "pet-point-tristeza.png"
+  },
+  {
+    "nome": "Bichos do Sarandi",
+    "categoria_id": "pet-shop",
+    "slug": "bichos-do-sarandi",
+    "file": "bichos-do-sarandi.png"
+  },
+  {
+    "nome": "Vet Amigo Moinhos",
+    "categoria_id": "veterinario",
+    "slug": "vet-amigo-moinhos",
+    "file": "vet-amigo-moinhos.png"
+  },
+  {
+    "nome": "Dra. Helena Prates – Medicina Felina",
+    "categoria_id": "veterinario",
+    "slug": "dra-helena-prates-medicina-felina",
+    "file": "dra-helena-prates-medicina-felina.png"
+  },
+  {
+    "nome": "VetCare Cidade Baixa",
+    "categoria_id": "veterinario",
+    "slug": "vetcare-cidade-baixa",
+    "file": "vetcare-cidade-baixa.png"
+  },
+  {
+    "nome": "Pata Saudável Veterinária",
+    "categoria_id": "veterinario",
+    "slug": "pata-saudavel-veterinaria",
+    "file": "pata-saudavel-veterinaria.png"
+  },
+  {
+    "nome": "Consultório Vet Três Figueiras",
+    "categoria_id": "veterinario",
+    "slug": "consultorio-vet-tres-figueiras",
+    "file": "consultorio-vet-tres-figueiras.png"
+  },
+  {
+    "nome": "Vet em Casa POA",
+    "categoria_id": "veterinario",
+    "slug": "vet-em-casa-poa",
+    "file": "vet-em-casa-poa.png"
+  },
+  {
+    "nome": "Doutor Bicho Cavalhada",
+    "categoria_id": "veterinario",
+    "slug": "doutor-bicho-cavalhada",
+    "file": "doutor-bicho-cavalhada.png"
+  },
+  {
+    "nome": "Hospital Veterinário Pampa 24h",
+    "categoria_id": "clinica",
+    "slug": "hospital-veterinario-pampa-24h",
+    "file": "hospital-veterinario-pampa-24h.png"
+  },
+  {
+    "nome": "Clínica Vet Santa Clara",
+    "categoria_id": "clinica",
+    "slug": "clinica-vet-santa-clara",
+    "file": "clinica-vet-santa-clara.png"
+  },
+  {
+    "nome": "ProntoVet Hospital 24h",
+    "categoria_id": "clinica",
+    "slug": "prontovet-hospital-24h",
+    "file": "prontovet-hospital-24h.png"
+  },
+  {
+    "nome": "Clínica Veterinária Mont'Serrat",
+    "categoria_id": "clinica",
+    "slug": "clinica-veterinaria-mont-serrat",
+    "file": "clinica-veterinaria-mont-serrat.png"
+  },
+  {
+    "nome": "Centro Veterinário Zona Sul 24h",
+    "categoria_id": "clinica",
+    "slug": "centro-veterinario-zona-sul-24h",
+    "file": "centro-veterinario-zona-sul-24h.png"
+  },
+  {
+    "nome": "Espuma & Patas",
+    "categoria_id": "banho-tosa",
+    "slug": "espuma-patas",
+    "file": "espuma-patas.png"
+  },
+  {
+    "nome": "Banho de Cheiro Pet Spa",
+    "categoria_id": "banho-tosa",
+    "slug": "banho-de-cheiro-pet-spa",
+    "file": "banho-de-cheiro-pet-spa.png"
+  },
+  {
+    "nome": "Tosa Fina Studio",
+    "categoria_id": "banho-tosa",
+    "slug": "tosa-fina-studio",
+    "file": "tosa-fina-studio.png"
+  },
+  {
+    "nome": "Bolha Pet",
+    "categoria_id": "banho-tosa",
+    "slug": "bolha-pet",
+    "file": "bolha-pet.png"
+  },
+  {
+    "nome": "Cãopricho Banho e Tosa",
+    "categoria_id": "banho-tosa",
+    "slug": "caopricho-banho-e-tosa",
+    "file": "caopricho-banho-e-tosa.png"
+  },
+  {
+    "nome": "Spa do Totó",
+    "categoria_id": "banho-tosa",
+    "slug": "spa-do-toto",
+    "file": "spa-do-toto.png"
+  },
+  {
+    "nome": "Cãomodidade Hotel & Creche",
+    "categoria_id": "hotel-creche",
+    "slug": "caomodidade-hotel-creche",
+    "file": "caomodidade-hotel-creche.png"
+  },
+  {
+    "nome": "Recreio dos Peludos",
+    "categoria_id": "hotel-creche",
+    "slug": "recreio-dos-peludos",
+    "file": "recreio-dos-peludos.png"
+  },
+  {
+    "nome": "Hotelzinho Patudos",
+    "categoria_id": "hotel-creche",
+    "slug": "hotelzinho-patudos",
+    "file": "hotelzinho-patudos.png"
+  },
+  {
+    "nome": "Vila Canina Daycare",
+    "categoria_id": "hotel-creche",
+    "slug": "vila-canina-daycare",
+    "file": "vila-canina-daycare.png"
+  },
+  {
+    "nome": "Agropecuária Belém Novo",
+    "categoria_id": "agropecuaria",
+    "slug": "agropecuaria-belem-novo",
+    "file": "agropecuaria-belem-novo.png"
+  },
+  {
+    "nome": "Casa Rural Lami",
+    "categoria_id": "agropecuaria",
+    "slug": "casa-rural-lami",
+    "file": "casa-rural-lami.png"
+  },
+  {
+    "nome": "Agro Restinga",
+    "categoria_id": "agropecuaria",
+    "slug": "agro-restinga",
+    "file": "agro-restinga.png"
+  },
+  {
+    "nome": "Agropecuária Lomba Verde",
+    "categoria_id": "agropecuaria",
+    "slug": "agropecuaria-lomba-verde",
+    "file": "agropecuaria-lomba-verde.png"
+  },
+  {
+    "nome": "Senta & Fica Adestramento",
+    "categoria_id": "adestrador",
+    "slug": "senta-fica-adestramento",
+    "file": "senta-fica-adestramento.png"
+  },
+  {
+    "nome": "Escola Canina Bom Garoto",
+    "categoria_id": "adestrador",
+    "slug": "escola-canina-bom-garoto",
+    "file": "escola-canina-bom-garoto.png"
+  },
+  {
+    "nome": "Adestra Pet Positivo",
+    "categoria_id": "adestrador",
+    "slug": "adestra-pet-positivo",
+    "file": "adestra-pet-positivo.png"
+  },
+  {
+    "nome": "Passeio Feliz Dog Walker",
+    "categoria_id": "dog-walker",
+    "slug": "passeio-feliz-dog-walker",
+    "file": "passeio-feliz-dog-walker.png"
+  },
+  {
+    "nome": "Lar Doce Pet Sitter",
+    "categoria_id": "dog-walker",
+    "slug": "lar-doce-pet-sitter",
+    "file": "lar-doce-pet-sitter.png"
+  },
+  {
+    "nome": "Caminhada Canina Parcão",
+    "categoria_id": "dog-walker",
+    "slug": "caminhada-canina-parcao",
+    "file": "caminhada-canina-parcao.png"
+  },
+  {
+    "nome": "Farmavet Central",
+    "categoria_id": "farmacia",
+    "slug": "farmavet-central",
+    "file": "farmavet-central.png"
+  },
+  {
+    "nome": "Drogavet Petrópolis",
+    "categoria_id": "farmacia",
+    "slug": "drogavet-petropolis",
+    "file": "drogavet-petropolis.png"
+  },
+  {
+    "nome": "Farmácia Vet Zona Norte",
+    "categoria_id": "farmacia",
+    "slug": "farmacia-vet-zona-norte",
+    "file": "farmacia-vet-zona-norte.png"
+  },
+  {
+    "nome": "LabVet Diagnósticos",
+    "categoria_id": "laboratorio",
+    "slug": "labvet-diagnosticos",
+    "file": "labvet-diagnosticos.png"
+  },
+  {
+    "nome": "Imagem Pet Exames",
+    "categoria_id": "laboratorio",
+    "slug": "imagem-pet-exames",
+    "file": "imagem-pet-exames.png"
+  },
+  {
+    "nome": "Recife Azul Aquarismo",
+    "categoria_id": "aquarismo",
+    "slug": "recife-azul-aquarismo",
+    "file": "recife-azul-aquarismo.png"
+  },
+  {
+    "nome": "Mundo Submerso",
+    "categoria_id": "aquarismo",
+    "slug": "mundo-submerso",
+    "file": "mundo-submerso.png"
+  },
+  {
+    "nome": "Biscoitaria Au Au",
+    "categoria_id": "petiscaria",
+    "slug": "biscoitaria-au-au",
+    "file": "biscoitaria-au-au.png"
+  },
+  {
+    "nome": "Petisco Gourmet da Vila",
+    "categoria_id": "petiscaria",
+    "slug": "petisco-gourmet-da-vila",
+    "file": "petisco-gourmet-da-vila.png"
+  },
+  {
+    "nome": "Clique Pet Estúdio",
+    "categoria_id": "fotografo",
+    "slug": "clique-pet-estudio",
+    "file": "clique-pet-estudio.png"
+  },
+  {
+    "nome": "Lente & Focinho Fotografia",
+    "categoria_id": "fotografo",
+    "slug": "lente-focinho-fotografia",
+    "file": "lente-focinho-fotografia.png"
+  },
+  {
+    "nome": "Abrigo Quatro Patas",
+    "categoria_id": "ong-adocao",
+    "slug": "abrigo-quatro-patas",
+    "file": "abrigo-quatro-patas.png"
+  },
+  {
+    "nome": "Adote um Amigo POA",
+    "categoria_id": "ong-adocao",
+    "slug": "adote-um-amigo-poa",
+    "file": "adote-um-amigo-poa.png"
+  },
+  {
+    "nome": "Memorial Jardim das Patas",
+    "categoria_id": "funeraria",
+    "slug": "memorial-jardim-das-patas",
+    "file": "memorial-jardim-das-patas.png"
+  },
+  {
+    "nome": "Pet Mania Auxiliadora",
+    "categoria_id": "pet-shop",
+    "slug": "pet-mania-auxiliadora",
+    "file": "pet-mania-auxiliadora.png"
+  },
+  {
+    "nome": "Gato Mestre Clínica Felina",
+    "categoria_id": "veterinario",
+    "slug": "gato-mestre-clinica-felina",
+    "file": "gato-mestre-clinica-felina.png"
+  },
+  {
+    "nome": "AuQMia Banho e Tosa",
+    "categoria_id": "banho-tosa",
+    "slug": "auqmia-banho-e-tosa",
+    "file": "auqmia-banho-e-tosa.png"
+  },
+  {
+    "nome": "Peixe Dourado Aquários",
+    "categoria_id": "aquarismo",
+    "slug": "peixe-dourado-aquarios",
+    "file": "peixe-dourado-aquarios.png"
+  },
+  {
+    "nome": "Ração Express Delivery",
+    "categoria_id": "pet-shop",
+    "slug": "racao-express-delivery",
+    "file": "racao-express-delivery.png"
+  }
+]

@@ -1,7 +1,7 @@
 # Gera o APK Android do app EasyPet quando uma tag de versão (v1.2.3) é enviada ao GitHub
 # e anexa o arquivo a um Release com o mesmo nome da tag.
 #
-# Pré-requisito (Settings → Secrets and variables → Actions → Variables):
+# Pré-requisito (Settings → Secrets and variables → Actions, aba Variables ou Secrets):
 #   EXPO_PUBLIC_SUPABASE_URL       URL do Supabase Cloud (https://<ref>.supabase.co)
 #   EXPO_PUBLIC_SUPABASE_ANON_KEY  chave anon do projeto (é pública — vai embutida no app)
 #
@@ -29,8 +29,8 @@ jobs:
       run:
         working-directory: apps/mobile
     env:
-      EXPO_PUBLIC_SUPABASE_URL: ${{ vars.EXPO_PUBLIC_SUPABASE_URL }}
-      EXPO_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.EXPO_PUBLIC_SUPABASE_ANON_KEY }}
+      EXPO_PUBLIC_SUPABASE_URL: ${{ vars.EXPO_PUBLIC_SUPABASE_URL || secrets.EXPO_PUBLIC_SUPABASE_URL }}
+      EXPO_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.EXPO_PUBLIC_SUPABASE_ANON_KEY || secrets.EXPO_PUBLIC_SUPABASE_ANON_KEY }}
       CI: '1'
 
     steps:
@@ -39,7 +39,7 @@ jobs:
       - name: Conferir variáveis do Supabase
         run: |
           if [ -z "$EXPO_PUBLIC_SUPABASE_URL" ] || [ -z "$EXPO_PUBLIC_SUPABASE_ANON_KEY" ]; then
-            echo "::error::Defina EXPO_PUBLIC_SUPABASE_URL e EXPO_PUBLIC_SUPABASE_ANON_KEY em Settings → Secrets and variables → Actions → Variables"
+            echo "::error::Defina EXPO_PUBLIC_SUPABASE_URL e EXPO_PUBLIC_SUPABASE_ANON_KEY em Settings → Secrets and variables → Actions (Variables ou Secrets)"
             exit 1
           fi
 

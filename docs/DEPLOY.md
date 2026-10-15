@@ -74,7 +74,34 @@ usuários de demo existem em **Authentication → Users**. As senhas precisam se
 > *Auto Confirm*). O trigger `handle_new_user` cria o `profiles` correspondente; depois ajuste
 > `role`/`plano` conforme a §4 do SPEC.
 
-### 1.5 Coletar URL e chave
+### 1.5 Publicar os logos das lojas no Storage
+
+O `seed.sql` já grava `stores.logo_url`, mas os **arquivos** dos logos precisam existir no Storage.
+Depois de carregar o seed, envie os PNGs e confirme as URLs (é idempotente — pode rodar quantas
+vezes quiser):
+
+```bash
+# instala as dependências dos scripts (uma vez) — o script usa @supabase/supabase-js
+npm install --prefix scripts
+
+SUPABASE_URL=https://<REF>.supabase.co \
+SUPABASE_SERVICE_ROLE_KEY=<service role key> \
+node scripts/upload-store-logos.mjs
+```
+
+- A **service role key** está em **Dashboard → Settings → API → `service_role`** — **nunca** comite.
+- O script sobe os PNGs para `store-images/seed/logos/<slug>.png`, casa cada arquivo pelo **nome da
+  loja** e atualiza `stores.logo_url` com a URL pública (`?v=<hash>` para furar cache quando o
+  arquivo mudar). Ao final, lista lojas sem logo no manifest e nomes que não casaram.
+- Sem `SUPABASE_URL`/`SUPABASE_SERVICE_ROLE_KEY`, o script usa o Supabase **local**
+  (`npx supabase status`) — útil em desenvolvimento.
+- Para o app no celular, se quiser que as URLs usem o IP da LAN em vez de `127.0.0.1`, passe
+  `--public-url http://<IP-LAN>:54321`.
+
+> ⚠️ Depois de **cada `npx supabase db reset`** local os logos somem do Storage e precisam ser
+> reenviados: `node scripts/upload-store-logos.mjs`.
+
+### 1.6 Coletar URL e chave
 
 Em **Dashboard → Settings → API** copie:
 
@@ -234,6 +261,7 @@ Gera um **APK instalável direto** no Android, sem depender do notebook ligado.
 
 - [ ] Projeto no Supabase Cloud criado; `supabase link` + `db push` aplicados
 - [ ] `seed.sql` carregado (lojas, cupons, avaliações, planos)
+- [ ] Logos das lojas enviados (`node scripts/upload-store-logos.mjs`) — `stores.logo_url` abrindo
 - [ ] Usuários demo existindo em **Authentication → Users** (senha `easypet123`)
 - [ ] URL do site cadastrada em **Authentication → URL Configuration**
 - [ ] Vercel com **Root Directory = `apps/web`** e as duas envs `NEXT_PUBLIC_*`

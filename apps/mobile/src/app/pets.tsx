@@ -1,3 +1,5 @@
+import { Image } from "expo-image";
+import { imageUrl } from "../lib/images";
 import { useCallback, useState } from "react";
 import { Alert } from "react-native";
 import { useFocusEffect } from "expo-router";
@@ -66,6 +68,15 @@ export default function Pets() {
           .sort((a, b) => a.proxima_dose!.localeCompare(b.proxima_dose!))[0];
         return (
           <Card key={p.id}>
+            {p.foto_url && (
+              <Image
+                source={imageUrl(p.foto_url)}
+                contentFit="cover"
+                cachePolicy="memory-disk"
+                accessibilityLabel={`Foto de ${p.nome}`}
+                style={{ width: 80, height: 80, borderRadius: 40 }}
+              />
+            )}
             <Txt title>{p.nome}</Txt>
             <Txt muted>
               {p.especie} · {p.raca ?? "Raça não informada"}

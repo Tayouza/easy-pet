@@ -1,3 +1,4 @@
+import { imageUrl } from "../../lib/images";
 import { useCallback, useEffect, useState } from "react";
 import { Alert, Linking, View, ScrollView } from "react-native";
 import { useLocalSearchParams } from "expo-router";
@@ -120,10 +121,10 @@ export default function StoreDetail() {
       <View style={s.row}>
         {store.logo_url ? (
           <Image
-            source={store.logo_url}
+            source={imageUrl(store.logo_url)}
             contentFit="cover"
             cachePolicy="memory-disk"
-            recyclingKey={store.logo_url}
+            recyclingKey={imageUrl(store.logo_url)}
             accessibilityLabel={`Logo de ${store.nome}`}
             style={{ width: 60, height: 60, borderRadius: 30 }}
           />
@@ -158,7 +159,7 @@ export default function StoreDetail() {
           {store.fotos.map((uri) => (
             <Image
               key={uri}
-              source={uri}
+              source={imageUrl(uri)}
               contentFit="cover"
               style={{ width: 260, height: 170, borderRadius: 16 }}
             />
@@ -245,7 +246,7 @@ export default function StoreDetail() {
           <Card key={i.id}>
             {i.imagem_url && (
               <Image
-                source={i.imagem_url}
+                source={imageUrl(i.imagem_url)}
                 style={{ height: 150, borderRadius: 12 }}
               />
             )}

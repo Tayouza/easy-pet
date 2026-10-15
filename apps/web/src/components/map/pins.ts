@@ -2,6 +2,7 @@ import L from "leaflet";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { categoryIcon } from "@/components/ui/CategoryIcon";
+import { assetUrl } from "@/lib/assetUrl";
 import { categoryMeta, initials } from "@/shared";
 
 const cache = new Map<string, L.DivIcon>();
@@ -23,7 +24,7 @@ function logoPin(logoUrl: string, nome: string, categoriaId: string, destaque: b
   const html = `<div class="ep-logo-pin" style="--c:${cor};width:${d}px;height:${h}px">
     <div class="ep-logo-pin__ring" style="width:${d}px;height:${d}px">
       <span class="ep-logo-pin__ini">${escapeAttr(initials(nome) || nome.slice(0, 1))}</span>
-      <img src="${escapeAttr(logoUrl)}" alt="" loading="lazy" onerror="this.remove()" />
+      <img src="${escapeAttr(assetUrl(logoUrl) ?? logoUrl)}" alt="" loading="lazy" onerror="this.remove()" />
     </div>
     <span class="ep-logo-pin__tail"></span>
     ${destaque ? `<span class="ep-logo-pin__star">${STAR_SVG}</span>` : ""}

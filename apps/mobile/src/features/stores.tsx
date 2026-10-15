@@ -1,3 +1,4 @@
+import { imageUrl } from "../lib/images";
 import { Pressable, View } from "react-native";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
@@ -38,7 +39,7 @@ export function Cover({
   const c = categoryMeta(store.categoria_id);
   return store.capa_url ? (
     <Image
-      source={store.capa_url}
+      source={imageUrl(store.capa_url)}
       contentFit="cover"
       style={{ height, borderRadius: 12 }}
     />
@@ -80,10 +81,10 @@ export function StoreCard({
         <View style={s.row}>
           {store.logo_url ? (
             <Image
-              source={store.logo_url}
+              source={imageUrl(store.logo_url)}
               contentFit="cover"
               cachePolicy="memory-disk"
-              recyclingKey={store.logo_url}
+              recyclingKey={imageUrl(store.logo_url)}
               accessibilityLabel={`Logo de ${store.nome}`}
               style={{ width: 44, height: 44, borderRadius: 22 }}
             />

@@ -1,3 +1,4 @@
+import { imageUrl } from "../../lib/images";
 import { memo, useEffect, useRef, useState, type ComponentRef } from "react";
 import { Image } from "expo-image";
 import { Text, View } from "react-native";
@@ -36,13 +37,16 @@ export default function EasyMap({
       onMapReady={() => map.current?.animateToRegion(region, 350)}
       onPress={() => onMapPress?.()}
     >
-      {markers.map((marker) => (
-        <StoreMarker
-          key={`${marker.id}:${marker.logo_url ?? ""}:${marker.cor}:${marker.destaque}`}
-          marker={marker}
-          onPress={onMarkerPress}
-        />
-      ))}
+      {markers.map((rawMarker) => {
+        const marker = { ...rawMarker, logo_url: imageUrl(rawMarker.logo_url) };
+        return (
+          <StoreMarker
+            key={`${marker.id}:${marker.logo_url ?? ""}:${marker.cor}:${marker.destaque}`}
+            marker={marker}
+            onPress={onMarkerPress}
+          />
+        );
+      })}
       {userLocation && (
         <Marker
           coordinate={{

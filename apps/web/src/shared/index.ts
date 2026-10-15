@@ -6,4 +6,5 @@ export * from './hours';
 export * from './format';
 export * from './links';
 export * from './errors';
+export * from './assets';
 export type * from './database.types';

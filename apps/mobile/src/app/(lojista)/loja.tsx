@@ -1,3 +1,4 @@
+import { imageUrl } from "../../lib/images";
 import { useState } from "react";
 import { Alert, ScrollView, Switch, View } from "react-native";
 import EasyMap from "../../features/map/EasyMap";
@@ -347,7 +348,7 @@ function StoreForm({
         <Txt title>Fotos</Txt>
         {form.capa_url && (
           <Image
-            source={form.capa_url}
+            source={imageUrl(form.capa_url)}
             style={{ height: 140, borderRadius: 12 }}
           />
         )}
@@ -365,7 +366,10 @@ function StoreForm({
         />
         {form.fotos.map((url) => (
           <View key={url}>
-            <Image source={url} style={{ height: 120, borderRadius: 12 }} />
+            <Image
+              source={imageUrl(url)}
+              style={{ height: 120, borderRadius: 12 }}
+            />
             <Button
               secondary
               label="Remover foto"

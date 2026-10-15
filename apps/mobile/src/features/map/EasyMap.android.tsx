@@ -1,3 +1,4 @@
+import { imageUrl } from "../../lib/images";
 import { useEffect, useRef, useState } from "react";
 import { ActivityIndicator, Linking, StyleSheet, View } from "react-native";
 import { WebView, type WebViewMessageEvent } from "react-native-webview";
@@ -5,6 +6,18 @@ import { Button, colors, Txt } from "../ui";
 import { LEAFLET_HTML } from "./leaflet";
 import type { EasyMapProps } from "./types";
 const source = { html: LEAFLET_HTML, baseUrl: "https://easypet.local/" };
+function mapPayload(props: EasyMapProps) {
+  return JSON.stringify({
+    region: props.region,
+    markers: props.markers?.map((marker) => ({
+      ...marker,
+      logo_url: imageUrl(marker.logo_url),
+    })),
+    userLocation: props.userLocation,
+    mode: props.mode ?? "map",
+    interactive: props.interactive ?? true,
+  });
+}
 export default function EasyMap(props: EasyMapProps) {
   const webview = useRef<WebView>(null);
   const ready = useRef(false);
@@ -12,20 +25,7 @@ export default function EasyMap(props: EasyMapProps) {
   const [status, setStatus] = useState<"loading" | "ready" | "error">(
     "loading",
   );
-  const {
-    region,
-    markers,
-    userLocation,
-    mode = "map",
-    interactive = true,
-  } = props;
-  const payload = JSON.stringify({
-    region,
-    markers,
-    userLocation,
-    mode,
-    interactive,
-  });
+  const payload = mapPayload(props);
   const send = (data: string) =>
     webview.current?.injectJavaScript(
       `window.easyMapUpdate && window.easyMapUpdate(${data}); true;`,
@@ -47,16 +47,7 @@ export default function EasyMap(props: EasyMapProps) {
       if (message.type === "ready") {
         ready.current = true;
         setStatus("ready");
-        const p = latest.current;
-        send(
-          JSON.stringify({
-            region: p.region,
-            markers: p.markers,
-            userLocation: p.userLocation,
-            mode: p.mode ?? "map",
-            interactive: p.interactive ?? true,
-          }),
-        );
+        send(mapPayload(latest.current));
       } else if (message.type === "error") setStatus("error");
       else if (message.type === "marker" && typeof message.id === "string")
         props.onMarkerPress?.(message.id);

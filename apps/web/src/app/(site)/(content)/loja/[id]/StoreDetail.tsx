@@ -13,6 +13,7 @@ import { useFeedback } from "@/components/ui/Feedback";
 import { EmptyState, ErrorState, Skeleton } from "@/components/ui/States";
 import { cn } from "@/lib/cn";
 import { unwrap, useQuery } from "@/lib/hooks";
+import { assetUrl } from "@/lib/assetUrl";
 import { supabaseBrowser } from "@/lib/supabase/client";
 import type { Store, StoreItem } from "@/lib/types";
 import { directionsUrl, formatPhone, formatPrice, formatWeek, telUrl, whatsappUrl, type Horarios } from "@/shared";
@@ -320,7 +321,7 @@ function ItemsTabs({ servicos, produtos }: { servicos: StoreItem[]; produtos: St
           {list.map((i) => (
             <div key={i.id} className="card flex gap-3 p-3">
               {i.imagem_url ? (
-                <img src={i.imagem_url} alt="" className="size-20 shrink-0 rounded-xl object-cover" />
+                <img src={assetUrl(i.imagem_url)!} alt="" className="size-20 shrink-0 rounded-xl object-cover" />
               ) : (
                 <div className="grid size-20 shrink-0 place-items-center rounded-xl bg-primary-50 text-2xl">{i.tipo === "servico" ? "✂️" : "🛍️"}</div>
               )}

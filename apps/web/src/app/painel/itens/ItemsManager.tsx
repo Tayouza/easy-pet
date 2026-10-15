@@ -10,6 +10,7 @@ import { Modal } from "@/components/ui/Modal";
 import { EmptyState, ErrorState, Skeleton } from "@/components/ui/States";
 import { cn } from "@/lib/cn";
 import { unwrap, useQuery } from "@/lib/hooks";
+import { assetUrl } from "@/lib/assetUrl";
 import { centsToInput, parseBRL } from "@/lib/money";
 import { supabaseBrowser } from "@/lib/supabase/client";
 import type { StoreItem } from "@/lib/types";
@@ -155,7 +156,7 @@ export function ItemsManager() {
           {list.map((i) => (
             <div key={i.id} className={cn("card flex min-w-0 gap-3 p-4 transition sm:gap-4", !i.ativo && "opacity-60")}>
               {i.imagem_url ? (
-                <img src={i.imagem_url} alt="" className="size-16 shrink-0 rounded-xl object-cover sm:size-20" />
+                <img src={assetUrl(i.imagem_url)!} alt="" className="size-16 shrink-0 rounded-xl object-cover sm:size-20" />
               ) : (
                 <div className="grid size-16 shrink-0 sm:size-20 place-items-center rounded-xl bg-primary-50 text-primary">{i.tipo === "servico" ? <Scissors className="size-7" /> : <ShoppingBag className="size-7" />}</div>
               )}

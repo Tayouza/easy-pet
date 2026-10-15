@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { assetUrl } from "@/lib/assetUrl";
 import { cn } from "@/lib/cn";
 import { categoryMeta, getOpenStatus, initials, type Horarios } from "@/shared";
 import { CategoryIcon } from "@/components/ui/CategoryIcon";
@@ -8,7 +9,7 @@ import { CategoryIcon } from "@/components/ui/CategoryIcon";
 /** Capa da loja; sem imagem → gradiente da cor da categoria + ícone. */
 export function StoreCover({ url, categoriaId, className, iconSize = "size-14" }: { url?: string | null; categoriaId: string; className?: string; iconSize?: string }) {
   const cor = categoryMeta(categoriaId).cor;
-  if (url) return <img src={url} alt="" className={cn("h-full w-full object-cover", className)} loading="lazy" />;
+  if (url) return <img src={assetUrl(url)!} alt="" className={cn("h-full w-full object-cover", className)} loading="lazy" />;
   return (
     <div className={cn("relative grid h-full w-full place-items-center overflow-hidden", className)} style={{ background: `linear-gradient(135deg, ${cor} 0%, ${cor}cc 55%, ${cor}88 100%)` }}>
       <div className="absolute -right-6 -top-8 size-32 rounded-full bg-white/10" />
@@ -27,7 +28,7 @@ export function StoreLogo({ url, nome, categoriaId, className }: { url?: string 
   return (
     <div className={cn("grid shrink-0 place-items-center overflow-hidden rounded-full border-[3px] border-white bg-white shadow-soft", className)}>
       {showImg ? (
-        <img src={url} alt={nome} className="h-full w-full object-cover" loading="lazy" onError={() => setFailedUrl(url)} />
+        <img src={assetUrl(url)!} alt={nome} className="h-full w-full object-cover" loading="lazy" onError={() => setFailedUrl(url)} />
       ) : (
         <span className="grid h-full w-full place-items-center font-extrabold text-white" style={{ background: cor }}>
           {initials(nome) || nome.slice(0, 1)}

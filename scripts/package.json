@@ -1,0 +1,14 @@
+{
+  "name": "easypet-scripts",
+  "private": true,
+  "type": "module",
+  "description": "Scripts de manutenção do backend EasyPet (seed, logos, sync do shared).",
+  "scripts": {
+    "seed": "node generate-seed.mjs",
+    "logos": "node upload-store-logos.mjs",
+    "sync": "node sync-shared.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.117.3"
+  }
+}

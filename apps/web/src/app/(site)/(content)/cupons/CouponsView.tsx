@@ -15,7 +15,19 @@ import { categoryMeta } from "@/shared";
 
 export function CouponsView() {
   const { user, isPremium, loading: authLoading } = useAuth();
-  const { data, error, initialLoading, reload } = useQuery(async () => unwrap(await supabaseBrowser().rpc("all_coupons")), [user?.id, isPremium], !authLoading);
+  const { data, error, initialLoading, reload } = useQuery(
+    async () => {
+      const sb = supabaseBrowser();
+      const coupons = unwrap(await sb.rpc("all_coupons"));
+      // all_coupons não traz o logo: busca os logos das lojas envolvidas.
+      const ids = [...new Set(coupons.map((c) => c.store_id))];
+      const { data: logos } = ids.length ? await sb.from("stores").select("id,logo_url").in("id", ids) : { data: [] };
+      const byId = new Map((logos ?? []).map((s) => [s.id, s.logo_url]));
+      return coupons.map((c) => ({ ...c, store_logo: byId.get(c.store_id) ?? null }));
+    },
+    [user?.id, isPremium],
+    !authLoading,
+  );
   const [cat, setCat] = useState<string | null>(null);
   const cats = useMemo(() => [...new Set((data ?? []).map((c) => c.categoria_id))], [data]);
   const list = (data ?? []).filter((c) => !cat || c.categoria_id === cat);

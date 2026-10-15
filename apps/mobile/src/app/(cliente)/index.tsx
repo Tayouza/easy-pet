@@ -216,6 +216,7 @@ export default function Explore() {
               lng: st.lng,
               cor: categoryMeta(st.categoria_id).cor,
               destaque: st.destaque,
+              logo_url: st.logo_url,
             }))}
             userLocation={
               located

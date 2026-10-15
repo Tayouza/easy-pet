@@ -4,7 +4,7 @@ import { Crown, CreditCard, Receipt, Store as StoreIcon, Wallet } from "lucide-r
 import Link from "next/link";
 import { useState } from "react";
 import { PageHeader, StatCard } from "@/components/dashboard/Shell";
-import { CategoryChip } from "@/components/store/StoreVisuals";
+import { CategoryChip, StoreLogo } from "@/components/store/StoreVisuals";
 import { Badge, PremiumBadge } from "@/components/ui/Badges";
 import { ErrorState, Skeleton } from "@/components/ui/States";
 import { cn } from "@/lib/cn";
@@ -13,7 +13,7 @@ import { supabaseBrowser } from "@/lib/supabase/client";
 import type { Payment, Profile, Subscription } from "@/lib/types";
 import { formatDate, formatPrice } from "@/shared";
 
-type SubRow = Subscription & { store: { id: string; nome: string; categoria_id: string } | null; plan: { nome: string } | null };
+type SubRow = Subscription & { store: { id: string; nome: string; categoria_id: string; logo_url: string | null } | null; plan: { nome: string } | null };
 type PayRow = Payment & { user: { nome: string; email: string } | null; store: { nome: string } | null };
 
 const METODO: Record<string, string> = { pix: "Pix", cartao: "Cartão", boleto: "Boleto" };
@@ -23,7 +23,7 @@ export function SubscriptionsAdmin() {
   const { data, error, initialLoading, reload } = useQuery(async () => {
     const sb = supabaseBrowser();
     const [subs, premium, pays] = await Promise.all([
-      sb.from("subscriptions").select("*, store:stores(id,nome,categoria_id), plan:store_plans(nome)").eq("status", "ativa").order("inicio", { ascending: false }),
+      sb.from("subscriptions").select("*, store:stores(id,nome,categoria_id,logo_url), plan:store_plans(nome)").eq("status", "ativa").order("inicio", { ascending: false }),
       sb.from("profiles").select("*").eq("plano", "premium").order("premium_desde", { ascending: false }),
       sb.from("payments").select("*, user:profiles(nome,email), store:stores(nome)").order("created_at", { ascending: false }).limit(100),
     ]);
@@ -77,7 +77,16 @@ export function SubscriptionsAdmin() {
               <Table head={["Loja", "Categoria", "Plano", "Valor", "Desde"]}>
                 {data.subs.map((s) => (
                   <tr key={s.id} className="hover:bg-bg/60">
-                    <td className="px-4 py-3 font-extrabold">{s.store ? <Link href={`/loja/${s.store.id}`} className="hover:text-primary-600">{s.store.nome}</Link> : "—"}</td>
+                    <td className="px-4 py-3 font-extrabold">
+                      {s.store ? (
+                        <Link href={`/loja/${s.store.id}`} className="flex items-center gap-3 hover:text-primary-600">
+                          <StoreLogo url={s.store.logo_url} nome={s.store.nome} categoriaId={s.store.categoria_id} className="size-9 border-2 text-xs" />
+                          {s.store.nome}
+                        </Link>
+                      ) : (
+                        "—"
+                      )}
+                    </td>
                     <td className="px-4 py-3">{s.store && <CategoryChip id={s.store.categoria_id} className="!py-0.5 text-[11px]" />}</td>
                     <td className="px-4 py-3">
                       <Badge tone={s.plan_id === "destaque" ? "accent" : s.plan_id === "profissional" ? "primary" : "secondary"}>{s.plan?.nome ?? s.plan_id}</Badge>

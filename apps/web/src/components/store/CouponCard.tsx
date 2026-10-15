@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { cn } from "@/lib/cn";
 import { categoryMeta, formatDate } from "@/shared";
+import { StoreLogo } from "./StoreVisuals";
 
 export interface CouponView {
   id: string;
@@ -16,6 +17,7 @@ export interface CouponView {
   bloqueado: boolean;
   store_id?: string;
   store_nome?: string;
+  store_logo?: string | null;
   categoria_id?: string;
 }
 
@@ -38,8 +40,9 @@ export function CouponCard({ c, showStore }: { c: CouponView; showStore?: boolea
       </div>
       <div className="flex min-w-0 flex-1 flex-col gap-2 border-l-2 border-dashed border-line p-4">
         {showStore && c.store_id && (
-          <Link href={`/loja/${c.store_id}`} className="text-xs font-extrabold uppercase tracking-wide hover:underline" style={{ color: cor }}>
-            {c.store_nome}
+          <Link href={`/loja/${c.store_id}`} className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wide hover:underline" style={{ color: cor }}>
+            <StoreLogo url={c.store_logo} nome={c.store_nome ?? ""} categoriaId={c.categoria_id ?? "pet-shop"} className="size-7 border-2 text-[10px]" />
+            <span className="min-w-0 truncate">{c.store_nome}</span>
           </Link>
         )}
         <div className="font-extrabold leading-snug">{c.titulo}</div>

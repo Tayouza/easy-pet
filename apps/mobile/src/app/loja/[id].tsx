@@ -121,6 +121,10 @@ export default function StoreDetail() {
         {store.logo_url ? (
           <Image
             source={store.logo_url}
+            contentFit="cover"
+            cachePolicy="memory-disk"
+            recyclingKey={store.logo_url}
+            accessibilityLabel={`Logo de ${store.nome}`}
             style={{ width: 60, height: 60, borderRadius: 30 }}
           />
         ) : (
@@ -215,6 +219,7 @@ export default function StoreDetail() {
               lng: store.lng,
               cor: categoryMeta(store.categoria_id).cor,
               destaque: store.destaque,
+              logo_url: store.logo_url,
             },
           ]}
         />

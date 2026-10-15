@@ -230,6 +230,8 @@ export function StoreForm() {
             <LocationPicker
               value={{ lat: form.lat, lng: form.lng }}
               categoriaId={form.categoria_id}
+              logoUrl={form.logo_url}
+              nome={form.nome}
               onChange={(p) => {
                 setForm((f) => ({ ...f, lat: p.lat, lng: p.lng }));
                 setLocated(true);

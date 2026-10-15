@@ -21,13 +21,17 @@ function Recenter({ lat, lng }: { lat: number; lng: number }) {
 export default function LocationPicker({
   value,
   categoriaId,
+  logoUrl,
+  nome = "",
   onChange,
 }: {
   value: { lat: number; lng: number };
   categoriaId: string;
+  logoUrl?: string | null;
+  nome?: string;
   onChange: (p: { lat: number; lng: number }) => void;
 }) {
-  const icon = useMemo(() => storePin(categoriaId, false, true), [categoriaId]);
+  const icon = useMemo(() => storePin(categoriaId, false, true, { url: logoUrl, nome }), [categoriaId, logoUrl, nome]);
   return (
     <MapContainer center={[value.lat, value.lng]} zoom={16} className="h-full w-full">
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' />

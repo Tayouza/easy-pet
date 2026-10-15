@@ -13,7 +13,9 @@ const DEMO = [
   { email: "cliente@easypet.com", label: "Cliente", icon: User },
   { email: "premium@easypet.com", label: "Premium", icon: Crown },
   { email: "lojista@easypet.com", label: "Lojista", icon: LayoutDashboard },
-  { email: "admin@easypet.com", label: "Admin", icon: Shield },
+  // Só em ambiente de demo local: em produção o admin tem senha forte. A variável é
+  // inlinada no build, então sem ela o e-mail do admin nem entra no bundle.
+  ...(process.env.NEXT_PUBLIC_DEMO_ADMIN === "1" ? [{ email: "admin@easypet.com", label: "Admin", icon: Shield }] : []),
 ];
 
 export function LoginForm() {
@@ -86,7 +88,7 @@ export function LoginForm() {
                 setSenha("easypet123");
                 login(undefined, { email: d.email, senha: "easypet123" });
               }}
-              className="flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-2.5 text-left text-sm font-bold transition hover:border-primary/50 hover:bg-primary-50 disabled:opacity-50"
+              className="flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-2.5 text-left text-sm font-bold transition last:odd:col-span-2 hover:border-primary/50 hover:bg-primary-50 disabled:opacity-50"
             >
               <d.icon className="size-4 text-primary" />
               <span>

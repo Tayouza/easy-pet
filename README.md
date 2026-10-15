@@ -34,7 +34,9 @@ easypet/
 │  ├─ shared/       # tipos do banco + helpers puros (fonte da verdade)
 │  └─ brand/        # logo SVG, ícone, splash, tokens (JSON/TS/CSS)
 ├─ scripts/
-│  └─ sync-shared.mjs   # copia packages/shared/src para os apps
+│  ├─ sync-shared.mjs          # copia packages/shared/src para os apps
+│  ├─ generate-seed.mjs        # gera supabase/seed.sql
+│  └─ upload-store-logos.mjs   # publica os logos das lojas no Storage
 ├─ supabase/        # migrations, seed.sql, config.toml
 └─ docs/            # SPEC, roteiro da demo, deploy
 ```
@@ -68,6 +70,33 @@ npx supabase db reset
 
 O `db reset` é o comando que você vai rodar sempre que quiser **voltar ao estado inicial da demo**
 (lojas, avaliações, cupons e contas de exemplo). Ele apaga e recria o banco local — seguro, é local.
+
+### 🌱 Seed e logos das lojas
+
+O `supabase/seed.sql` é **gerado** — não edite à mão. Para mudar os dados de demonstração, edite
+`scripts/generate-seed.mjs` e rode `node scripts/generate-seed.mjs` (determinístico: mesma saída
+sempre).
+
+Os logos das lojas (`packages/brand/store-logos/*.png` + `manifest.json`) ficam no Storage, que o
+`db reset` não repovoa. Depois de **todo** `db reset`, publique-os de novo:
+
+```bash
+npm install --prefix scripts            # só na primeira vez (instala @supabase/supabase-js)
+npx supabase db reset
+node scripts/upload-store-logos.mjs     # sobe os PNGs e preenche stores.logo_url
+```
+
+O script envia cada PNG para `store-images/seed/logos/<slug>.png` (upsert), casa com a loja pelo
+nome e grava a URL pública em `stores.logo_url`. É idempotente e, no fim, lista os nomes que não
+casaram com nenhuma loja.
+
+- **Local:** sem variáveis de ambiente, ele pega URL e service role do `npx supabase status`.
+- **Celular no Supabase local:** a URL gravada usa `127.0.0.1`, que o celular não enxerga. Use
+  `node scripts/upload-store-logos.mjs --public-url http://<SEU_IP_LOCAL>:54321` (funciona também
+  no site, no mesmo computador).
+- **Supabase Cloud:** `SUPABASE_URL=https://<REF>.supabase.co SUPABASE_SERVICE_ROLE_KEY=<service role key> node scripts/upload-store-logos.mjs`
+  (a service role key fica em *Project Settings → API*; nunca a coloque nos apps).
+- `--dry-run` mostra o que seria feito sem enviar nada.
 
 Locais úteis depois de subir:
 

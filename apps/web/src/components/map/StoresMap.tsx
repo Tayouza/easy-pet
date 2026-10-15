@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { Circle, MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import type { StoreCardData } from "@/lib/types";
 import { categoryMeta, formatDistance, formatRating } from "@/shared";
+import { StoreLogo } from "@/components/store/StoreVisuals";
 import { meIcon, storePin } from "./pins";
 
 export interface StoresMapProps {
@@ -95,17 +96,22 @@ export default function StoresMap({ stores, center, me, radiusM, activeId, onSel
         <Marker
           key={s.id}
           position={[s.lat, s.lng]}
-          icon={storePin(s.categoria_id, s.destaque, s.id === activeId)}
+          icon={storePin(s.categoria_id, s.destaque, s.id === activeId, { url: s.logo_url, nome: s.nome })}
           zIndexOffset={s.id === activeId ? 2000 : s.destaque ? 1000 : 0}
           eventHandlers={{ click: () => onSelect?.(s.id) }}
         >
           {interactive && (
             <Popup>
-              <div className="min-w-44 font-sans">
-                <div className="text-[11px] font-bold uppercase tracking-wide" style={{ color: categoryMeta(s.categoria_id).cor }}>
-                  {categoryMeta(s.categoria_id).nome}
+              <div className="min-w-48 font-sans">
+                <div className="flex items-center gap-2.5">
+                  <StoreLogo url={s.logo_url} nome={s.nome} categoriaId={s.categoria_id} className="size-10 border-2 text-xs" />
+                  <div className="min-w-0">
+                    <div className="text-[11px] font-bold uppercase tracking-wide" style={{ color: categoryMeta(s.categoria_id).cor }}>
+                      {categoryMeta(s.categoria_id).nome}
+                    </div>
+                    <div className="mt-0.5 text-[15px] font-extrabold leading-tight text-ink">{s.nome}</div>
+                  </div>
                 </div>
-                <div className="mt-0.5 text-[15px] font-extrabold leading-tight text-ink">{s.nome}</div>
                 <div className="mt-1 text-xs text-muted">
                   ★ {Number(s.nota_media) > 0 ? formatRating(s.nota_media) : "Novo"} · {s.bairro}
                   {s.distancia_m != null && ` · ${formatDistance(s.distancia_m)}`}

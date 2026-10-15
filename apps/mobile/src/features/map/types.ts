@@ -10,6 +10,7 @@ export type MapMarker = MapCoordinate & {
   id: string;
   cor: string;
   destaque?: boolean;
+  logo_url?: string | null;
 };
 export type EasyMapProps = {
   region: MapRegion;

@@ -21,10 +21,13 @@ export function StoreCover({ url, categoriaId, className, iconSize = "size-14" }
 /** Logo da loja; sem imagem → iniciais em círculo colorido. */
 export function StoreLogo({ url, nome, categoriaId, className }: { url?: string | null; nome: string; categoriaId: string; className?: string }) {
   const cor = categoryMeta(categoriaId).cor;
+  // Guarda qual URL falhou: se a loja trocar de logo, tenta de novo.
+  const [failedUrl, setFailedUrl] = useState<string | null>(null);
+  const showImg = !!url && failedUrl !== url;
   return (
     <div className={cn("grid shrink-0 place-items-center overflow-hidden rounded-full border-[3px] border-white bg-white shadow-soft", className)}>
-      {url ? (
-        <img src={url} alt={nome} className="h-full w-full object-cover" loading="lazy" />
+      {showImg ? (
+        <img src={url} alt={nome} className="h-full w-full object-cover" loading="lazy" onError={() => setFailedUrl(url)} />
       ) : (
         <span className="grid h-full w-full place-items-center font-extrabold text-white" style={{ background: cor }}>
           {initials(nome) || nome.slice(0, 1)}

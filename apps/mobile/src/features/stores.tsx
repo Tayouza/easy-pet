@@ -81,6 +81,10 @@ export function StoreCard({
           {store.logo_url ? (
             <Image
               source={store.logo_url}
+              contentFit="cover"
+              cachePolicy="memory-disk"
+              recyclingKey={store.logo_url}
+              accessibilityLabel={`Logo de ${store.nome}`}
               style={{ width: 44, height: 44, borderRadius: 22 }}
             />
           ) : (

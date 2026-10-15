@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Alert, Linking, View, ScrollView } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { Image } from "expo-image";
-import MapView, { Marker } from "react-native-maps";
+import EasyMap from "../../features/map/EasyMap";
 import { supabase, Row } from "../../lib/supabase";
 import { reportError, useSession } from "../../lib/session";
 import {
@@ -199,18 +199,25 @@ export default function StoreDetail() {
         <Txt>
           {store.endereco} · {store.bairro}
         </Txt>
-        <MapView
-          scrollEnabled={false}
+        <EasyMap
+          interactive={false}
           style={{ height: 160, borderRadius: 12 }}
-          initialRegion={{
+          region={{
             latitude: store.lat,
             longitude: store.lng,
             latitudeDelta: 0.008,
             longitudeDelta: 0.008,
           }}
-        >
-          <Marker coordinate={{ latitude: store.lat, longitude: store.lng }} />
-        </MapView>
+          markers={[
+            {
+              id: store.id,
+              lat: store.lat,
+              lng: store.lng,
+              cor: categoryMeta(store.categoria_id).cor,
+              destaque: store.destaque,
+            },
+          ]}
+        />
       </Card>
       <Card>
         <Txt title>Horários</Txt>

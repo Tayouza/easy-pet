@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Alert, ScrollView, Switch, View } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import EasyMap from "../../features/map/EasyMap";
 import * as Location from "expo-location";
 import * as ImagePicker from "expo-image-picker";
 import { Image } from "expo-image";
@@ -230,27 +230,19 @@ function StoreForm({
       <Card>
         <Txt title>Localização</Txt>
         <Txt muted>Arraste o pin até a entrada da loja.</Txt>
-        <MapView
-          style={{ height: 250 }}
+        <EasyMap
+          mode="picker"
+          style={{ height: 250, borderRadius: 12 }}
           region={{
             latitude: form.lat,
             longitude: form.lng,
             latitudeDelta: 0.01,
             longitudeDelta: 0.01,
           }}
-        >
-          <Marker
-            draggable
-            coordinate={{ latitude: form.lat, longitude: form.lng }}
-            onDragEnd={(e) =>
-              setForm((f) => ({
-                ...f,
-                lat: e.nativeEvent.coordinate.latitude,
-                lng: e.nativeEvent.coordinate.longitude,
-              }))
-            }
-          />
-        </MapView>
+          onPickerChange={(point) =>
+            setForm((f) => ({ ...f, lat: point.lat, lng: point.lng }))
+          }
+        />
         <Button
           secondary
           label="Usar localização atual"

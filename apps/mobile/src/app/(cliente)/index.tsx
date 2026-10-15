@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Alert, Pressable, ScrollView, View } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import EasyMap from "../../features/map/EasyMap";
 import Slider from "@react-native-community/slider";
 import * as Location from "expo-location";
 import { router } from "expo-router";
@@ -24,6 +24,7 @@ export default function Explore() {
   const [located, setLocated] = useState(false);
   const [stores, setStores] = useState<Store[]>([]);
   const [busy, setBusy] = useState(true);
+  const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState<string | null>(null);
@@ -75,6 +76,7 @@ export default function Explore() {
         (data ?? []).map((st) => ({ ...st, horarios: st.horarios ?? {} })),
       );
     setBusy(false);
+    setLoaded(true);
   }, [coords, category, radius, search]);
   useEffect(() => {
     const timer = setTimeout(() => void load(), 350);
@@ -157,7 +159,7 @@ export default function Explore() {
           />
         </View>
       </View>
-      {busy ? (
+      {busy && !loaded ? (
         <Busy />
       ) : error ? (
         <View style={{ padding: 20 }}>
@@ -175,36 +177,46 @@ export default function Explore() {
         </ScrollView>
       ) : (
         <View style={{ flex: 1 }}>
-          <MapView
+          <EasyMap
             style={{ flex: 1 }}
             region={{
               ...coords,
               latitudeDelta: radius * 0.023,
               longitudeDelta: radius * 0.023,
             }}
-            showsUserLocation={located}
-            onPress={() => setSelected(null)}
-          >
-            {visible.map((st) => (
-              <Marker
-                key={st.id}
-                coordinate={{ latitude: st.lat, longitude: st.lng }}
-                onPress={() => setSelected(st)}
-              >
-                <View
-                  style={{
-                    backgroundColor: categoryMeta(st.categoria_id).cor,
-                    borderRadius: 30,
-                    borderWidth: 3,
-                    borderColor: "white",
-                    padding: st.destaque ? 13 : 9,
-                  }}
-                >
-                  <Txt>{st.destaque ? "★" : "🐾"}</Txt>
-                </View>
-              </Marker>
-            ))}
-          </MapView>
+            markers={visible.map((st) => ({
+              id: st.id,
+              lat: st.lat,
+              lng: st.lng,
+              cor: categoryMeta(st.categoria_id).cor,
+              destaque: st.destaque,
+            }))}
+            userLocation={
+              located
+                ? { lat: coords.latitude, lng: coords.longitude }
+                : undefined
+            }
+            onMarkerPress={(id) =>
+              setSelected(visible.find((st) => st.id === id) ?? null)
+            }
+            onMapPress={() => setSelected(null)}
+          />
+          {busy && (
+            <View
+              pointerEvents="none"
+              style={{
+                position: "absolute",
+                top: 12,
+                alignSelf: "center",
+                padding: 10,
+                backgroundColor: "white",
+                borderRadius: 20,
+              }}
+            >
+              <Txt muted>Atualizando lojas…</Txt>
+            </View>
+          )}
+
           {selected && (
             <View
               style={{

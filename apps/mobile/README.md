@@ -43,3 +43,9 @@ node scripts/check-backend.mjs --write
 O script de backend autentica as quatro contas demo e verifica leitura real, RPCs, cupons protegidos, favoritos, pets, assinatura e estatísticas. Por padrão não modifica o seed. Com `--write`, verifica também o limite free de favoritos e CRUD de pets, vacinas, itens e cupons com registros temporários removidos ao final. A validação visual, permissões de galeria/localização, mapas nativos e links externos devem ser exercitados em aparelho com Expo Go.
 
 A fonte dos tipos e helpers é `packages/shared/src`, sincronizada pelo script da raiz. Não edite `src/shared`. Os tokens são importados diretamente de `packages/brand/tokens.ts`.
+
+## Mapas por plataforma
+
+No Android, `src/features/map/EasyMap.android.tsx` usa WebView (incluída no Expo Go), Leaflet 1.9.4 e tiles HTTPS OpenStreetMap. No iOS, `EasyMap.tsx` mantém Apple Maps via react-native-maps. Os três mapas usam a mesma API: exploração, mini mapa da loja e pin arrastável do cadastro. O Android precisa de internet para carregar Leaflet e tiles; falha de carregamento oferece nova tentativa.
+
+O HTML permanece estável: mudanças em lojas/filtros/localização são enviadas por injectJavaScript após a mensagem ready. A câmera só anima quando centro/raio mudam, preservando pan/zoom durante atualizações de marcadores. A busca mantém o mapa montado durante refresh.

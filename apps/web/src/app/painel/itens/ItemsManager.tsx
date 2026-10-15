@@ -40,11 +40,19 @@ export function ItemsManager() {
   const list = items.filter((i) => tab === "todos" || i.tipo === tab);
   const max = plan?.max_itens ?? null;
 
-  const openNew = () => setDraft({ tipo: "servico", ativo: true, preco_a_partir: false, preco: "" });
+  // Mesma regra do trigger enforce_item_limit, checada antes para já mostrar o modal certo.
+  const planBlock = () => (!plan ? "PLANO_NECESSARIO" : max != null && items.length >= max ? "LIMITE_ITENS" : null);
+  const openNew = () => {
+    const block = planBlock();
+    if (block) return void showError(block);
+    setDraft({ tipo: "servico", ativo: true, preco_a_partir: false, preco: "" });
+  };
 
   const save = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!draft?.nome) return;
+    const block = draft.id ? null : planBlock();
+    if (block) return void showError(block);
     setSaving(true);
     const payload = {
       store_id: store.id,

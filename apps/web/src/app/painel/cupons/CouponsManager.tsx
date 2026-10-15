@@ -41,11 +41,16 @@ export function CouponsManager() {
     return <EmptyState icon={Ticket} title="Cadastre sua loja primeiro" description="Depois você poderá criar cupons para assinantes Premium." action={<ButtonLink href="/painel/loja">Cadastrar loja</ButtonLink>} />;
 
   const allowed = !!plan?.permite_cupons;
-  const openNew = () => setDraft({ ativo: true, desconto: "10% OFF", codigo: "" });
+  // Mesma regra do trigger enforce_coupon_plan, checada antes para já mostrar o modal certo.
+  const openNew = () => {
+    if (!allowed) return void showError("PLANO_SEM_CUPONS");
+    setDraft({ ativo: true, desconto: "10% OFF", codigo: "" });
+  };
 
   const save = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!draft?.codigo || !draft.titulo || !draft.desconto) return;
+    if (!draft.id && !allowed) return void showError("PLANO_SEM_CUPONS");
     setSaving(true);
     const payload = {
       store_id: store.id,

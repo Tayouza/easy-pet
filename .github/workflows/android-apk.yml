@@ -1,0 +1,104 @@
+# Gera o APK Android do app EasyPet quando uma tag de versão (v1.2.3) é enviada ao GitHub
+# e anexa o arquivo a um Release com o mesmo nome da tag.
+#
+# Pré-requisito (Settings → Secrets and variables → Actions → Variables):
+#   EXPO_PUBLIC_SUPABASE_URL       URL do Supabase Cloud (https://<ref>.supabase.co)
+#   EXPO_PUBLIC_SUPABASE_ANON_KEY  chave anon do projeto (é pública — vai embutida no app)
+#
+# Uso:  git tag v1.0.0 && git push origin v1.0.0
+
+name: Android APK
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-apk-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: apps/mobile
+    env:
+      EXPO_PUBLIC_SUPABASE_URL: ${{ vars.EXPO_PUBLIC_SUPABASE_URL }}
+      EXPO_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.EXPO_PUBLIC_SUPABASE_ANON_KEY }}
+      CI: '1'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Conferir variáveis do Supabase
+        run: |
+          if [ -z "$EXPO_PUBLIC_SUPABASE_URL" ] || [ -z "$EXPO_PUBLIC_SUPABASE_ANON_KEY" ]; then
+            echo "::error::Defina EXPO_PUBLIC_SUPABASE_URL e EXPO_PUBLIC_SUPABASE_ANON_KEY em Settings → Secrets and variables → Actions → Variables"
+            exit 1
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/mobile/package-lock.json
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Versão a partir da tag
+        id: version
+        run: |
+          if [[ "$GITHUB_REF_TYPE" == "tag" ]]; then
+            VERSION="${GITHUB_REF_NAME#v}"
+          else
+            VERSION="0.0.0-dev.${GITHUB_RUN_NUMBER}"
+          fi
+          node -e '
+            const fs = require("fs");
+            const app = JSON.parse(fs.readFileSync("app.json", "utf8"));
+            app.expo.version = process.argv[1];
+            app.expo.android.versionCode = Number(process.argv[2]);
+            fs.writeFileSync("app.json", JSON.stringify(app, null, 2) + "\n");
+          ' "$VERSION" "$GITHUB_RUN_NUMBER"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Versão $VERSION (versionCode $GITHUB_RUN_NUMBER)"
+
+      - name: Gerar projeto Android (prebuild)
+        run: npx expo prebuild --platform android --clean --no-install
+
+      - name: Compilar APK (release)
+        working-directory: apps/mobile/android
+        run: ./gradlew assembleRelease --no-daemon
+
+      - name: Renomear APK
+        id: apk
+        run: |
+          OUT="easypet-${{ steps.version.outputs.version }}.apk"
+          cp android/app/build/outputs/apk/release/app-release.apk "$OUT"
+          echo "path=apps/mobile/$OUT" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: easypet-apk-${{ steps.version.outputs.version }}
+          path: ${{ steps.apk.outputs.path }}
+
+      - name: Publicar no Release da tag
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.apk.outputs.path }}
+          generate_release_notes: true

@@ -8,9 +8,12 @@
     "scheme": "easypet",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "br.com.easypet.app"
     },
     "android": {
+      "package": "br.com.easypet.app",
+      "versionCode": 1,
       "adaptiveIcon": {
         "backgroundColor": "#FF6B35",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -37,7 +40,7 @@
       [
         "expo-location",
         {
-          "locationWhenInUsePermission": "O EasyPet usa sua localiza\u00e7\u00e3o para encontrar cuidados para seu pet por perto."
+          "locationWhenInUsePermission": "O EasyPet usa sua localização para encontrar cuidados para seu pet por perto."
         }
       ],
       [

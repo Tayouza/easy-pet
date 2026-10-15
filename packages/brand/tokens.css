@@ -1,0 +1,47 @@
+/* Fonte da verdade: docs/SPEC.md, seção 2. */
+:root {
+  --ep-primary: #FF6B35;
+  --ep-primary-600: #E4541F;
+  --ep-primary-50: #FFF1EB;
+  --ep-secondary: #127475;
+  --ep-secondary-50: #E6F3F3;
+  --ep-accent: #FFC857;
+  --ep-bg: #FFF8F0;
+  --ep-surface: #FFFFFF;
+  --ep-ink: #1E1B18;
+  --ep-muted: #6B6460;
+  --ep-border: #EEE4DA;
+  --ep-success: #2E9E5B;
+  --ep-danger: #D64545;
+  --ep-radius-card: 16px;
+  --ep-radius-input: 12px;
+  --ep-radius-pill: 999px;
+  --ep-shadow-soft: 0 4px 20px rgba(30,27,24,.06);
+  --ep-font-family: "Nunito", system-ui, sans-serif;
+  --ep-font-weight-regular: 400;
+  --ep-font-weight-semibold: 600;
+  --ep-font-weight-bold: 700;
+  --ep-font-weight-extrabold: 800;
+  --ep-spacing-base: 4px;
+}
+
+@theme inline {
+  --color-primary: var(--ep-primary);
+  --color-primary-600: var(--ep-primary-600);
+  --color-primary-50: var(--ep-primary-50);
+  --color-secondary: var(--ep-secondary);
+  --color-secondary-50: var(--ep-secondary-50);
+  --color-accent: var(--ep-accent);
+  --color-bg: var(--ep-bg);
+  --color-surface: var(--ep-surface);
+  --color-ink: var(--ep-ink);
+  --color-muted: var(--ep-muted);
+  --color-border: var(--ep-border);
+  --color-success: var(--ep-success);
+  --color-danger: var(--ep-danger);
+  --font-sans: var(--ep-font-family);
+  --radius-card: var(--ep-radius-card);
+  --radius-input: var(--ep-radius-input);
+  --radius-pill: var(--ep-radius-pill);
+  --shadow-soft: var(--ep-shadow-soft);
+}

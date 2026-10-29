@@ -2,6 +2,7 @@
 
 import {
   Award,
+  BadgeCheck,
   Bath,
   Check,
   Clock,
@@ -665,9 +666,12 @@ function Modelo() {
       </div>
       <A d={1500} className="mt-8 flex items-center gap-6 rounded-3xl bg-ink px-8 py-6 text-white shadow-lift">
         <span className="rounded-full bg-white/10 px-4 py-1.5 text-[15px] font-bold tracking-widest text-accent">SIMULAÇÃO</span>
-        <span className="text-[22px] text-white/80">100 lojas Profissional + 1.000 assinantes Premium</span>
+        <span>
+          <span className="block text-[24px] font-bold">400 lojas + 300 assinantes Premium</span>
+          <span className="block text-[17px] text-white/60">200 Básico · 150 Profissional · 50 Destaque</span>
+        </span>
         <span className="ml-auto text-[44px] leading-none font-black text-accent">
-          R$ <CountUp to={19890} delay={1800} duration={1800} />
+          R$ <CountUp to={37930} delay={1800} duration={1800} />
           <span className="text-[20px] font-semibold text-white/70">/mês</span>
         </span>
       </A>
@@ -677,51 +681,64 @@ function Modelo() {
 
 /* ───────────────────────── 8. tração ───────────────────────── */
 
-const DONE = [
-  "Site no ar, com Next.js na Vercel",
-  "App Android com build automatizado",
-  "Banco real com geolocalização (PostGIS)",
-  "15 categorias e busca por raio",
-  "Planos e Premium validados no servidor",
-  "Moderação de lojas pelo admin",
-  "Segurança por linha (RLS) no banco",
-  "Gestão da qualidade documentada (ISO 9001)",
+const VALUE_DONE = [
+  "Site e app Android funcionando de ponta a ponta",
+  "O tutor encontra, compara e chama a loja em segundos",
+  "O lojista se cadastra, escolhe o plano e acompanha resultados",
+  "Toda loja é aprovada antes de aparecer no mapa",
+  "Cada pessoa só acessa os próprios dados",
+];
+
+const QUALITY = [
+  "Processos e responsabilidades definidos",
+  "Riscos e oportunidades mapeados",
+  "Critérios de aceite antes de cada versão",
+  "Melhoria contínua a cada ciclo",
 ];
 
 function Tracao() {
   return (
     <Frame>
-      <div className="flex items-start justify-between gap-12">
-        <div>
-          <A>
-            <Tag>Onde estamos</Tag>
-          </A>
-          <div className="mt-7">
-            <Title lines={["MVP funcionando.", "Pronto para piloto."]} accentLast size={76} />
-          </div>
-        </div>
-        <A v="pop" d={600} className="mt-4 flex shrink-0 gap-3">
-          {["Next.js", "Expo", "Supabase", "PostGIS"].map((t) => (
-            <span key={t} className="rounded-full border-2 border-line bg-white px-5 py-2 text-[18px] font-bold">
-              {t}
-            </span>
+      <A>
+        <Tag>Onde estamos</Tag>
+      </A>
+      <div className="mt-7">
+        <Title lines={["MVP funcionando,", "feito com qualidade."]} accentLast size={72} />
+      </div>
+      <div className="mt-9 flex gap-8">
+        <div className="flex-1 space-y-3">
+          {VALUE_DONE.map((t, i) => (
+            <A key={t} v="slide-left" d={600 + i * 140} className="flex items-center gap-4 rounded-2xl bg-white px-6 py-3.5 shadow-soft">
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-success text-white">
+                <Check className="h-6 w-6" strokeWidth={3} />
+              </span>
+              <span className="text-[23px] font-bold">{t}</span>
+            </A>
           ))}
+        </div>
+        <A v="pop" d={1300} className="w-[520px] shrink-0 rounded-[28px] bg-secondary p-8 text-white shadow-lift">
+          <div className="flex items-center gap-4">
+            <div className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-white/15">
+              <BadgeCheck className="h-9 w-9 text-accent" />
+            </div>
+            <div>
+              <div className="text-[28px] leading-tight font-black">Qualidade como método</div>
+              <div className="text-[18px] text-white/75">Gestão da qualidade com base na ISO 9001</div>
+            </div>
+          </div>
+          <div className="mt-6 space-y-3.5">
+            {QUALITY.map((t, i) => (
+              <A key={t} v="slide-left" d={1600 + i * 150} className="flex items-center gap-3 text-[21px] font-semibold">
+                <Check className="h-6 w-6 shrink-0 text-accent" strokeWidth={3} /> {t}
+              </A>
+            ))}
+          </div>
         </A>
       </div>
-      <div className="mt-10 grid grid-cols-2 gap-x-10 gap-y-4">
-        {DONE.map((t, i) => (
-          <A key={t} v="slide-left" d={700 + i * 140} className="flex items-center gap-4 rounded-2xl bg-white px-6 py-4 shadow-soft">
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-success text-white">
-              <Check className="h-6 w-6" strokeWidth={3} />
-            </span>
-            <span className="text-[24px] font-bold">{t}</span>
-          </A>
-        ))}
-      </div>
-      <A d={2000} className="mt-7 flex items-center gap-4 rounded-2xl border-2 border-accent bg-accent-50 px-6 py-4">
-        <ShieldCheck className="h-8 w-8 shrink-0 text-[#B98300]" />
-        <span className="text-[22px]">
-          <b>Transparência:</b> os pagamentos ainda são simulados. O próximo passo é o gateway real, junto com o piloto.
+      <A d={2400} className="mt-6 flex items-center gap-4 rounded-2xl border-2 border-accent bg-accent-50 px-6 py-3.5">
+        <ShieldCheck className="h-7 w-7 shrink-0 text-[#B98300]" />
+        <span className="text-[21px]">
+          <b>Transparência:</b> pagamentos ainda simulados e app iOS em desenvolvimento. Os dois chegam antes do lançamento oficial.
         </span>
       </A>
     </Frame>
@@ -821,9 +838,9 @@ const FUNDS = [
 ];
 
 const MILESTONES = [
-  { quando: "3 meses", t: "Piloto com 50 lojas em Porto Alegre" },
-  { quando: "6 meses", t: "Pagamentos reais e app iOS" },
-  { quando: "12 meses", t: "300 lojas pagantes e Grande Porto Alegre" },
+  { quando: "3 meses", t: "Lançamento oficial: app iOS, pagamentos reais e 100 lojas parceiras" },
+  { quando: "6 meses", t: "400 lojas pagantes e 5 mil tutores ativos em Porto Alegre" },
+  { quando: "12 meses", t: "1.000 lojas, R$ 1 mi/ano de receita recorrente e Grande Porto Alegre" },
 ];
 
 function Pedido() {

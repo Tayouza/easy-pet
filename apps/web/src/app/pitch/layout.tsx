@@ -3,7 +3,7 @@ import "./pitch.css";
 
 export const metadata: Metadata = {
   title: "Pitch",
-  description: "Apresentação do EasyPet para investidores.",
+  description: "Apresentação do EasyPet para tutores e lojistas.",
   robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
 };
 

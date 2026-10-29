@@ -1,5 +1,5 @@
 /**
- * Roteiro do pitch (estilo Shark Tank, 5 minutos). Fonte única para os slides e o modo apresentador:
+ * Roteiro do pitch para tutores e lojistas (5 minutos). Fonte única para os slides e o modo apresentador:
  * a ordem de PITCH_SCRIPT é a ordem dos slides (ids casam com SLIDE_VIEWS em slides.tsx).
  */
 
@@ -35,7 +35,7 @@ export type SlideId =
   | "tracao"
   | "proposito"
   | "equipe"
-  | "pedido"
+  | "convite"
   | "fechamento";
 
 export interface ScriptEntry {
@@ -59,10 +59,10 @@ export const PITCH_SCRIPT: ScriptEntry[] = [
     titulo: "Capa",
     quem: "paulline",
     segundos: 15,
-    fala: "Boa noite, tubarões! Nós somos o EasyPet. Eu sou Paulline, e comigo estão Taylor, Bruno, Gustavo e Léo. Em cinco minutos, vamos mostrar como levar cada pet até o cuidado certo, pertinho de casa.",
+    fala: "Boa noite, pessoal! Nós somos o EasyPet. Eu sou Paulline, e comigo estão Taylor, Bruno, Gustavo e Léo. Em cinco minutos, vamos mostrar como levar cada pet até o cuidado certo, pertinho de casa.",
     falaSolo:
-      "Boa noite, tubarões! Eu represento o EasyPet, um time de cinco pessoas: Paulline, Taylor, Bruno, Gustavo e Léo. Em cinco minutos, vou mostrar como levar cada pet até o cuidado certo, pertinho de casa.",
-    palco: "O time entra junto e fica em linha. Quem abre dá um passo à frente. Sorriso e contato visual com a bancada.",
+      "Boa noite, pessoal! Eu represento o EasyPet, um time de cinco pessoas: Paulline, Taylor, Bruno, Gustavo e Léo. Em cinco minutos, vou mostrar como levar cada pet até o cuidado certo, pertinho de casa.",
+    palco: "O time entra junto e fica em linha. Quem abre dá um passo à frente. Sorriso e contato visual com o público.",
     passagem: "Léo, conta pra eles como tudo começou.",
   },
   {
@@ -78,8 +78,8 @@ export const PITCH_SCRIPT: ScriptEntry[] = [
     titulo: "O problema",
     quem: "leo",
     segundos: 25,
-    fala: "E o problema não é falta de serviço: Porto Alegre tem pet shop, veterinário e banho e tosa em todo bairro. O problema é que a informação está espalhada: Google, Instagram, grupo de WhatsApp, indicação de vizinho. E do outro lado está o pequeno lojista, que faz um trabalho incrível, mas é invisível pra quem mora a três quadras.",
-    palco: "Apontar para os dois cartões: primeiro o do tutor, depois o do lojista.",
+    fala: "E o problema não é falta de serviço: Porto Alegre tem pet shop, veterinário e banho e tosa em todo bairro. O problema é que a informação está espalhada: Google, Instagram, grupo de WhatsApp, indicação de vizinho. E do outro lado está o lojista, que faz um trabalho incrível, mas é invisível pra quem mora a três quadras.",
+    palco: "Apontar para os dois cartões: primeiro o do tutor, depois o do lojista. Se houver lojistas na plateia, olhar para eles no segundo cartão.",
     passagem: "Bruno, mostra pra eles o que a gente construiu.",
   },
   {
@@ -97,32 +97,32 @@ export const PITCH_SCRIPT: ScriptEntry[] = [
     segundos: 30,
     fala: "E vai além. Pro tutor: avaliações, favoritos, cupons e uma carteirinha digital com as vacinas do pet. Pro lojista: perfil completo, catálogo, cupons e estatísticas: quantas pessoas viram a loja, chamaram no WhatsApp ou pediram a rota. E tudo isso funciona hoje, no site e no app.",
     palco: "Opcional, se houver internet: erguer o celular com o app aberto. O botão “Ver ao vivo” abre o site em outra aba (voltar com Alt+Tab).",
-    passagem: "Gustavo, e quanto isso vale?",
+    passagem: "Gustavo, conta por que isso faz tanta diferença.",
   },
   {
     id: "mercado",
-    titulo: "O mercado",
+    titulo: "Por que agora",
     quem: "gustavo",
     segundos: 25,
-    fala: "Vamos falar de dinheiro. O setor pet brasileiro faturou quase 78 bilhões de reais em 2025, segundo a Abinpet. São cerca de 160 milhões de animais de estimação no país. E mesmo num ano difícil para a economia, esse mercado continuou crescendo.",
+    fala: "O Brasil tem cerca de 160 milhões de pets, e o setor pet faturou quase 78 bilhões de reais em 2025, segundo a Abinpet. E continua crescendo. Pro tutor, isso quer dizer muita opção. Pro lojista, quer dizer muita gente procurando pelo seu serviço agora. O que falta é se encontrarem.",
     palco: "Esperar os números terminarem de contar antes de falar cada um.",
   },
   {
     id: "modelo",
-    titulo: "Modelo de negócio",
+    titulo: "Planos",
     quem: "gustavo",
     segundos: 30,
-    fala: "Nosso modelo tem duas pontas. O tutor usa de graça, e pode assinar o Premium por R$ 9,90 por mês. O lojista paga um plano mensal, de R$ 49,90 a R$ 199,90. E a gente começa pelo lojista, que é quem paga primeiro. Uma conta simples: 400 lojas, distribuídas entre os três planos, e só 300 assinantes Premium já somam quase 38 mil reais de receita recorrente por mês. Só em Porto Alegre.",
-    palco: "Ao falar “uma conta simples”, apontar para a faixa da simulação no rodapé.",
-    passagem: "Taylor, eles vão querer saber se isso é de verdade.",
+    fala: "E como funciona? Pro tutor, usar é de graça: mapa, busca, WhatsApp, rota e até cinco favoritos. Quem quiser mais assina o Premium por R$ 9,90 por mês, com cupons exclusivos, favoritos ilimitados e a carteirinha do pet. Pro lojista, são três planos, de R$ 49,90 a R$ 199,90 por mês: do perfil com pin no mapa até aparecer no topo das buscas.",
+    palco: "Apontar primeiro para o lado do tutor, depois para os planos do lojista.",
+    passagem: "Taylor, conta onde a gente já chegou.",
   },
   {
     id: "tracao",
     titulo: "Onde estamos",
     quem: "taylor",
     segundos: 30,
-    fala: "E é de verdade. O EasyPet já funciona de ponta a ponta: o tutor encontra e chama a loja em segundos, o lojista se cadastra e acompanha os resultados, e toda loja é aprovada antes de aparecer. E qualidade, pra nós, é método: temos uma gestão da qualidade documentada com base na ISO 9001, com processos, riscos e critérios de aceite definidos. Sendo transparente: os pagamentos ainda são simulados e o app iOS está em desenvolvimento. Os dois chegam antes do lançamento.",
-    palco: "Tom firme e honesto. Apontar para o cartão de qualidade ao falar da ISO 9001. A transparência sobre pagamentos e iOS gera confiança: não pular essa frase.",
+    fala: "E isso não é promessa: o EasyPet já funciona de ponta a ponta. O tutor encontra e chama a loja em segundos, o lojista se cadastra e acompanha os resultados, e toda loja é aprovada antes de aparecer. E qualidade, pra nós, é método: temos uma gestão da qualidade documentada com base na ISO 9001, com processos, riscos e critérios de aceite definidos. Sendo transparente: o app de iPhone e o pagamento online ainda estão chegando, e entram antes do lançamento oficial.",
+    palco: "Tom firme e honesto. Apontar para o cartão de qualidade ao falar da ISO 9001. A transparência sobre iPhone e pagamento online gera confiança: não pular essa frase.",
   },
   {
     id: "proposito",
@@ -137,38 +137,44 @@ export const PITCH_SCRIPT: ScriptEntry[] = [
     titulo: "Equipe",
     quem: "paulline",
     segundos: 15,
-    fala: "Somos cinco pessoas que se completam: negócios, tecnologia, produto, finanças e marca. Construímos esse MVP do zero e queremos levá-lo a cada bairro de Porto Alegre.",
+    fala: "Somos cinco pessoas que se completam: negócios, tecnologia, produto, finanças e marca. Construímos o EasyPet do zero e queremos levá-lo a cada bairro de Porto Alegre.",
     falaSolo:
-      "Somos cinco pessoas que se completam: Paulline em negócios, Taylor em tecnologia, Bruno em produto, Gustavo em finanças e Léo em marca. Construímos esse MVP do zero e queremos levá-lo a cada bairro de Porto Alegre.",
+      "Somos cinco pessoas que se completam: Paulline em negócios, Taylor em tecnologia, Bruno em produto, Gustavo em finanças e Léo em marca. Construímos o EasyPet do zero e queremos levá-lo a cada bairro de Porto Alegre.",
     palco: "Cada integrante acena quando aparece o próprio cartão.",
   },
   {
-    id: "pedido",
-    titulo: "O pedido",
+    id: "convite",
+    titulo: "Faça parte",
     quem: "paulline",
     segundos: 35,
-    fala: "Então, aqui está a nossa proposta: buscamos 300 mil reais por 10% do EasyPet. A maior parte vai para trazer lojistas e para o produto: app iOS e pagamentos reais. As metas: em 3 meses, lançamento oficial com 100 lojas parceiras. Em 6 meses, 400 lojas pagantes. E em 12 meses, mil lojas e um milhão de reais por ano em receita recorrente.",
-    palco: "Valores e metas fictícios para a dinâmica. Dizer o pedido olhando para a bancada e fazer uma pausa curta antes do “por 10%”. Apontar para cada meta ao citá-la.",
+    fala: "E agora é com vocês. Se você é tutor: entre no EasyPet, encontre as lojas do seu bairro e favorite as que você confia. Se você é lojista: cadastre a sua loja e seja encontrado por quem está pertinho. E vem muita coisa por aí: em três meses, o lançamento oficial, com app de iPhone e pagamento online. Em seis, 400 lojas em Porto Alegre. E em um ano, a Grande Porto Alegre.",
+    palco: "Olhar para os tutores ao falar do primeiro cartão e para os lojistas no segundo. Os endereços na tela levam ao site; deixar o slide visível alguns segundos para fotos.",
   },
   {
     id: "fechamento",
     titulo: "Fechamento",
     quem: "paulline",
     segundos: 15,
-    fala: "Toda noite, em algum lugar de Porto Alegre, tem uma Luna esperando. Com o EasyPet, o cuidado certo está a um toque. Tubarões: quem vem com a gente?",
-    palco: "O time inteiro à frente. O confete dispara ao entrar no slide. Agradecer e aguardar as perguntas.",
+    fala: "Toda noite, em algum lugar de Porto Alegre, tem uma Luna esperando. Com o EasyPet, o cuidado certo está a um toque. Obrigado, e vem com a gente!",
+    palco: "O time inteiro à frente. O confete dispara ao entrar no slide. Agradecer e abrir para perguntas.",
   },
 ];
 
 export const TOTAL_SECONDS = PITCH_SCRIPT.reduce((sum, s) => sum + s.segundos, 0);
 
-/** Perguntas prováveis da bancada, com a linha de resposta e quem responde. */
+/** Perguntas prováveis do público (tutores e lojistas), com a linha de resposta e quem responde. */
 export const QA: { pergunta: string; resposta: string; quem: MemberId }[] = [
   {
-    pergunta: "Como vocês chegaram em R$ 3 milhões de valuation?",
+    pergunta: "Para o tutor é de graça mesmo?",
     resposta:
-      "MVP completo (site, app e backend), modelo de receita recorrente nas duas pontas e um mercado de R$ 78 bi. O aporte banca o lançamento e 12 meses de crescimento até R$ 1 mi/ano de receita recorrente.",
+      "Sim. Mapa, busca, WhatsApp, rota e até 5 favoritos não custam nada. O Premium, de R$ 9,90 por mês, é opcional: cupons exclusivos, favoritos ilimitados, filtros avançados e a carteirinha do pet.",
     quem: "gustavo",
+  },
+  {
+    pergunta: "Como sei que a loja é confiável?",
+    resposta:
+      "Toda loja passa por aprovação antes de aparecer no mapa, e você vê as avaliações de outros tutores antes de escolher.",
+    quem: "bruno",
   },
   {
     pergunta: "Por que o lojista pagaria, se o Google Maps é de graça?",
@@ -177,21 +183,20 @@ export const QA: { pergunta: string; resposta: string; quem: MemberId }[] = [
     quem: "paulline",
   },
   {
-    pergunta: "Como vão atrair os primeiros lojistas?",
-    resposta:
-      "Venda porta a porta por bairro, com o primeiro mês do plano Básico como degustação, para chegar a 100 lojas parceiras no lançamento.",
-    quem: "paulline",
+    pergunta: "Posso cancelar o plano da minha loja?",
+    resposta: "Sim, o plano é mensal e pode ser cancelado pelo painel do lojista.",
+    quem: "gustavo",
   },
   {
-    pergunta: "Quais são os riscos técnicos?",
+    pergunta: "Tem app para iPhone? E o pagamento online?",
     resposta:
-      "Pagamentos reais e a publicação do app iOS, previstos para os 3 primeiros meses. O resto já roda: geolocalização, regras de plano no servidor e controle de acesso aos dados, dentro do nosso processo de qualidade.",
+      "Os dois chegam no lançamento oficial, previsto para os próximos 3 meses. Até lá, o site funciona no navegador do celular e o app Android já está pronto.",
     quem: "taylor",
   },
   {
-    pergunta: "E se uma grande rede pet copiar?",
+    pergunta: "Qual a diferença para um app de uma grande rede pet?",
     resposta:
-      "Grandes redes vendem o próprio estoque. Somos uma vitrine neutra para todo o comércio local, incluindo serviços que elas não oferecem, como adestrador, dog walker e hotel.",
+      "Grandes redes mostram as próprias lojas. O EasyPet é uma vitrine de todo o comércio do bairro, incluindo serviços que elas não oferecem, como adestrador, dog walker e hotel.",
     quem: "leo",
   },
 ];

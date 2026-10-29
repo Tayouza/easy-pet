@@ -106,7 +106,7 @@ function Capa() {
       <div className="flex h-full items-center justify-between">
         <div className="w-[860px]">
           <A>
-            <Tag>Pitch · Shark Tank</Tag>
+            <Tag>Pitch · Tutores e lojistas</Tag>
           </A>
           <div className="mt-9">
             <Title lines={["Seu pet precisa.", "Você encontra."]} size={104} accentLast />
@@ -562,10 +562,10 @@ function Mercado() {
   return (
     <Frame>
       <A>
-        <Tag>O mercado</Tag>
+        <Tag>Por que agora</Tag>
       </A>
       <div className="mt-7">
-        <Title lines={["Um mercado gigante", "que segue crescendo."]} accentLast size={76} />
+        <Title lines={["Tutores procurando,", "lojas querendo ser achadas."]} accentLast size={76} />
       </div>
       <div className="mt-14 grid grid-cols-3 gap-7">
         <Stat d={500} big={<>R$ <CountUp to={78} delay={700} /> bi</>} text="faturamento do setor pet no Brasil em 2025" color="#FF6B35" />
@@ -574,7 +574,7 @@ function Mercado() {
       </div>
       <A d={1700} className="mt-10 flex items-center justify-between rounded-3xl bg-white px-8 py-5 shadow-soft">
         <span className="flex items-center gap-4 text-[24px] font-bold">
-          <MapPin className="h-8 w-8 text-primary" /> Porta de entrada: Porto Alegre, com 15 categorias de serviço
+          <MapPin className="h-8 w-8 text-primary" /> Começando por Porto Alegre, com 15 categorias de serviço
         </span>
         <span className="text-[16px] text-muted">Fontes: Abinpet e Instituto Pet Brasil</span>
       </A>
@@ -605,7 +605,7 @@ const STORE_PLANS = [
 function Modelo() {
   return (
     <Frame blob="teal">
-      <Title lines={["Duas pontas,", "receita recorrente."]} accentLast size={72} />
+      <Title lines={["Grátis para o tutor.", "Sob medida para o lojista."]} accentLast size={72} />
       <div className="mt-10 flex gap-8">
         <A d={400} className="w-[520px] shrink-0">
           <div className="mb-4 flex items-center gap-3 text-[22px] font-extrabold tracking-[0.15em] text-secondary">
@@ -665,14 +665,10 @@ function Modelo() {
         </A>
       </div>
       <A d={1500} className="mt-8 flex items-center gap-6 rounded-3xl bg-ink px-8 py-6 text-white shadow-lift">
-        <span className="rounded-full bg-white/10 px-4 py-1.5 text-[15px] font-bold tracking-widest text-accent">SIMULAÇÃO</span>
-        <span>
-          <span className="block text-[24px] font-bold">400 lojas + 300 assinantes Premium</span>
-          <span className="block text-[17px] text-white/60">200 Básico · 150 Profissional · 50 Destaque</span>
-        </span>
-        <span className="ml-auto text-[44px] leading-none font-black text-accent">
-          R$ <CountUp to={37930} delay={1800} duration={1800} />
-          <span className="text-[20px] font-semibold text-white/70">/mês</span>
+        <span className="rounded-full bg-white/10 px-4 py-1.5 text-[15px] font-bold tracking-widest text-accent">PARA COMEÇAR</span>
+        <span className="text-[23px]">
+          <b>Tutor:</b> abre e usa na hora. <b className="ml-3">Lojista:</b> cadastra a loja, escolhe o plano e aparece no mapa após a
+          aprovação.
         </span>
       </A>
     </Frame>
@@ -738,7 +734,7 @@ function Tracao() {
       <A d={2400} className="mt-6 flex items-center gap-4 rounded-2xl border-2 border-accent bg-accent-50 px-6 py-3.5">
         <ShieldCheck className="h-7 w-7 shrink-0 text-[#B98300]" />
         <span className="text-[21px]">
-          <b>Transparência:</b> pagamentos ainda simulados e app iOS em desenvolvimento. Os dois chegam antes do lançamento oficial.
+          <b>Transparência:</b> o app para iPhone e o pagamento online ainda estão chegando. Os dois entram antes do lançamento oficial.
         </span>
       </A>
     </Frame>
@@ -828,75 +824,97 @@ function Equipe() {
   );
 }
 
-/* ───────────────────────── 11. pedido ───────────────────────── */
+/* ───────────────────────── 11. convite ───────────────────────── */
 
-const FUNDS = [
-  { t: "Comercial: trazer lojistas", p: 40, c: "#FF6B35" },
-  { t: "Marketing para tutores", p: 25, c: "#127475" },
-  { t: "Produto: iOS e pagamentos reais", p: 25, c: "#5468D4" },
-  { t: "Operação e LGPD", p: 10, c: "#E0A100" },
+const ROADMAP = [
+  { quando: "Em 3 meses", t: "Lançamento oficial, com app para iPhone e pagamento online" },
+  { quando: "Em 6 meses", t: "400 lojas parceiras em Porto Alegre" },
+  { quando: "Em 1 ano", t: "EasyPet em toda a Grande Porto Alegre" },
 ];
 
-const MILESTONES = [
-  { quando: "3 meses", t: "Lançamento oficial: app iOS, pagamentos reais e 100 lojas parceiras" },
-  { quando: "6 meses", t: "400 lojas pagantes e 5 mil tutores ativos em Porto Alegre" },
-  { quando: "12 meses", t: "1.000 lojas, R$ 1 mi/ano de receita recorrente e Grande Porto Alegre" },
-];
-
-function Pedido() {
+function Convite() {
+  const host = typeof window === "undefined" ? "" : window.location.host;
   return (
     <Frame dark blob="none">
-      <div className="flex gap-16">
-        <div className="w-[640px] shrink-0">
-          <A>
-            <Tag dark>O pedido</Tag>
-          </A>
-          <A v="pop" d={250}>
-            <div className="mt-8 text-[150px] leading-[0.95] font-black tracking-[-0.05em]">
-              R$ <CountUp to={300} delay={400} duration={1300} />
-              <span className="text-[90px]"> mil</span>
-            </div>
-          </A>
-          <A d={1300}>
-            <div className="mt-4 text-[84px] leading-none font-black text-primary">por 10%</div>
-          </A>
-          <A d={1700}>
-            <div className="mt-6 text-[26px] text-white/60">do EasyPet · valuation de R$ 3 milhões</div>
-          </A>
-        </div>
-        <div className="flex-1 pt-6">
-          <A d={600} className="text-[20px] font-extrabold tracking-[0.2em] text-white/50">
-            USO DOS RECURSOS
-          </A>
-          <div className="mt-5 space-y-5">
-            {FUNDS.map((f, i) => (
-              <A key={f.t} d={700 + i * 150}>
-                <div className="flex items-baseline justify-between text-[24px] font-bold">
-                  <span>{f.t}</span>
-                  <span className="text-[30px] font-black" style={{ color: f.c }}>
-                    {f.p}%
-                  </span>
-                </div>
-                <div className="mt-2 h-4 overflow-hidden rounded-full bg-white/10">
-                  <div
-                    className="pt-grow-x h-full rounded-full"
-                    style={{ width: `${f.p * 2.5}%`, background: f.c, animationDelay: `${900 + i * 150}ms` }}
-                  />
-                </div>
-              </A>
-            ))}
-          </div>
-        </div>
+      <A>
+        <Tag dark>Próximos passos</Tag>
+      </A>
+      <div className="mt-6">
+        <Title lines={["Faça parte do EasyPet."]} size={80} />
       </div>
-      <div className="absolute inset-x-0 bottom-0 grid grid-cols-3 gap-6">
-        {MILESTONES.map((m, i) => (
-          <A key={m.quando} d={2000 + i * 200} className="rounded-3xl bg-white/[0.07] p-6">
-            <div className="text-[18px] font-extrabold tracking-[0.15em] text-accent uppercase">{m.quando}</div>
-            <div className="mt-2 text-[24px] leading-snug font-bold">{m.t}</div>
-          </A>
-        ))}
+      <div className="mt-9 grid grid-cols-2 gap-7">
+        <InviteCard
+          d={400}
+          icon={Heart}
+          color="#FF6B35"
+          title="Você é tutor?"
+          text="Encontre, favorite e chame as lojas do seu bairro."
+          href="/explorar"
+          host={host}
+        />
+        <InviteCard
+          d={650}
+          icon={Store}
+          color="#127475"
+          title="Você é lojista?"
+          text="Cadastre sua loja e seja encontrado por quem está perto."
+          href="/para-lojistas"
+          host={host}
+        />
+      </div>
+      <div className="absolute inset-x-0 bottom-0">
+        <A d={1400} className="mb-3 text-[18px] font-extrabold tracking-[0.2em] text-white/50">
+          O QUE VEM POR AÍ
+        </A>
+        <div className="grid grid-cols-3 gap-6">
+          {ROADMAP.map((m, i) => (
+            <A key={m.quando} d={1500 + i * 200} className="rounded-3xl bg-white/[0.07] px-6 py-5">
+              <div className="text-[17px] font-extrabold tracking-[0.15em] text-accent uppercase">{m.quando}</div>
+              <div className="mt-1.5 text-[23px] leading-snug font-bold">{m.t}</div>
+            </A>
+          ))}
+        </div>
       </div>
     </Frame>
+  );
+}
+
+function InviteCard({
+  d,
+  icon: Icon,
+  color,
+  title,
+  text,
+  href,
+  host,
+}: {
+  d: number;
+  icon: LucideIcon;
+  color: string;
+  title: string;
+  text: string;
+  href: string;
+  host: string;
+}) {
+  return (
+    <A v="pop" d={d} className="rounded-[28px] p-8 text-white shadow-lift" style={{ background: color }}>
+      <div className="flex items-center gap-4">
+        <div className="grid h-14 w-14 place-items-center rounded-2xl bg-white/20">
+          <Icon className="h-7 w-7" />
+        </div>
+        <div className="text-[34px] font-black">{title}</div>
+      </div>
+      <p className="mt-4 text-[25px] leading-snug text-white/90">{text}</p>
+      <a
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+        className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[20px] font-extrabold text-ink"
+      >
+        {host}
+        {href} <ExternalLink className="h-5 w-5" />
+      </a>
+    </A>
   );
 }
 
@@ -933,7 +951,7 @@ function Fechamento({ active }: { active: boolean }) {
         </div>
         <A v="pop" d={1100}>
           <div className="pt-glow mt-12 rounded-full bg-ink px-12 py-5 text-[34px] font-black text-white">
-            Tubarões, quem vem com a gente?
+            Obrigado! Vem com a gente.
           </div>
         </A>
         <A v="fade" d={1500} className="mt-10 flex gap-6 text-[22px] font-bold text-muted">
@@ -962,6 +980,6 @@ export const SLIDE_VIEWS: Record<SlideId, (props: { active: boolean }) => ReactN
   tracao: Tracao,
   proposito: Proposito,
   equipe: Equipe,
-  pedido: Pedido,
+  convite: Convite,
   fechamento: Fechamento,
 };

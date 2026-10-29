@@ -147,7 +147,7 @@ export const PITCH_SCRIPT: ScriptEntry[] = [
     titulo: "Faça parte",
     quem: "paulline",
     segundos: 35,
-    fala: "E agora é com vocês. Se você é tutor: entre no EasyPet, encontre as lojas do seu bairro e favorite as que você confia. Se você é lojista: cadastre a sua loja e seja encontrado por quem está pertinho. E vem muita coisa por aí: em três meses, o lançamento oficial, com app de iPhone e pagamento online. Em seis, 400 lojas em Porto Alegre. E em um ano, a Grande Porto Alegre.",
+    fala: "E agora é com vocês. Se você é tutor: entre no EasyPet, encontre as lojas do seu bairro e favorite as que você confia. Se você é lojista: cadastre a sua loja e seja encontrado por quem está pertinho. E vem muita coisa por aí: em três meses, o lançamento oficial, com app de iPhone e pagamento online. Em seis, 150 lojas em Porto Alegre. E em um ano, a Grande Porto Alegre.",
     palco: "Olhar para os tutores ao falar do primeiro cartão e para os lojistas no segundo. Os endereços na tela levam ao site; deixar o slide visível alguns segundos para fotos.",
   },
   {

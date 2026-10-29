@@ -828,7 +828,7 @@ function Equipe() {
 
 const ROADMAP = [
   { quando: "Em 3 meses", t: "Lançamento oficial, com app para iPhone e pagamento online" },
-  { quando: "Em 6 meses", t: "400 lojas parceiras em Porto Alegre" },
+  { quando: "Em 6 meses", t: "150 lojas parceiras em Porto Alegre" },
   { quando: "Em 1 ano", t: "EasyPet em toda a Grande Porto Alegre" },
 ];
 
